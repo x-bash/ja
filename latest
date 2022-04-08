@@ -5,9 +5,10 @@
 
 ___x_cmd_jawk(){
     case "$1" in
-        t|tokenized)        ___x_cmd_jawk_tokenized "$@" ;;
-        kp)                 ___x_cmd_jawk_kp "$@" ;;      # just extract keypath, provide jstr
-        kpo)                ___x_cmd_jawk_kpo "$@" ;;      # extract keypath, but also provide utils, provide jstr
+        t|tokenized)        shift; ___x_cmd_jawk_tokenized "$@" ;;
+        kp)                 shift; ___x_cmd_jawk_kp "$@" ;;      # just extract keypath, provide jstr
+        kpo)                shift; ___x_cmd_jawk_kpo "$@" ;;      # extract keypath, but also provide utils, provide jstr
+        *)                  ___x_cmd_jawk_kpo "$@" ;;
     esac
 }
 

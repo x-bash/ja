@@ -1,0 +1,47 @@
+: <<A
+[
+    {
+        name: alpha,
+        age: 33
+    },
+    {
+        name: beta,
+        age: 26
+    },
+    {
+        name: delta,
+        age: 33
+    }
+]
+A
+
+
+# Print all name
+
+jawk kp '
+{
+    if (kparr[ kparrl ] == quote("name")) {
+        print val
+    }
+}
+'
+
+# Print all name when age == 33
+jawk kp '
+{
+    if (val != "}")     next
+    if (! kpmatch(1, "*")) next
+    if ( get( kp, "age" ) == 33 ) print get( kp, "name" )
+}
+'
+
+# Print all name when age == 33
+jawk kp '
+{
+    if (val != "}")     next
+    if (! kpmatch(1, "*")) next
+    if ( g( "age" ) == 33 ) print g( "name" )
+}
+'
+
+
