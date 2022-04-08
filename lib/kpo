@@ -134,7 +134,7 @@ function quote(str){
     if (kp == "") next
     kal = split(kp, ka, S)
     k = ka[kal]
-    val = $0
+    v = $0
 }
 '"
 $*
