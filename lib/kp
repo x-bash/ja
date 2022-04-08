@@ -1,0 +1,26 @@
+
+___x_cmd_jawk_kp(){
+    local IFS=' '
+    ___x_cmd_jawk_tokenized | \
+    command awk -f "$__X_CMD_ROOT_MOD/awk/lib/json.awk" \
+                -f "$__X_CMD_ROOT_MOD/awk/lib/jiter.awk" \
+                -f "$__X_CMD_ROOT_MOD/jawk/lib/kp" | \
+    command awk '
+{
+    if (a == 0){
+        a = 1 - a
+        kp = $0
+        kparrl = split(kp, kparr, "\001")
+        key = kparr[kparrl]
+        next()
+    } else {
+        a = 1 - a
+        val = $0
+    }
+}
+'"
+$*
+"
+
+}
+
