@@ -17,10 +17,10 @@ A
 
 # Print all name
 
-jawk kp 'k=="name"{ print val; }'
+jawk kp 'k()=="name"{ print v(); }'
 
 # Print all name when age == 33
-jawk kp 'v=="}" && kpmatch(1, "*") && ( get( kp, "age" ) == 33 ) { print get( kp, "name" ) }'
+jawk kp 'v()=="}" && kpmatch(1, "*") && ( get( kp, "age" ) == 33 ) { print get( kp, "name" ) }'
 
 # Print all name when age == 33
-jawk kp 'v=="}" && kpmath(1, "*") && g("age") == 33 { print g( "name" ) }'
+jawk kp 'v()=="}" && kpmath(1, "*") && g("age") == 33 { print g( "name" ) }'
