@@ -3,6 +3,7 @@ ___x_cmd_jawk_kpo(){
     local IFS=' '
     ___x_cmd_jawk_tokenized | \
     command awk '
+# Section: jiter
 function jiter_init( keypath_prefix ) {
     JITER_FA_KEYPATH    = keypath_prefix
     JITER_STATE         = T_ROOT
@@ -52,19 +53,89 @@ function jiter( item, stack,  _res ) {
     }
     return ""
 }
+# EndSection
+''
+# Section: Machine Stringify
+function ___json_stringify_machine_dict(arr, keypath,     _klist, _l, _i, _key, _val, _ret){
 
+    _l = jdict_keys2arr(arr, keypath, _klist)
 
-{
-    if (a == 0){
-        a = 1 - a
-        kp = $0
-        kparrl = split(kp, kparr, "\001")
-        key = kparr[kparrl]
-        next()
-    } else {
-        a = 1 - a
-        val = $0
+    if (_l == 0) return "{\n}"
+
+    for (_i=1; _i<=_l; _i++){
+        _key = _klist[ _i ]
+        # _val = arr[ keypath S _key ]
+        _ret = _ret "\n,\n" _key "\n:\n" ___json_stringify_machine_value( arr, keypath S _key )
     }
+    _ret = substr(_ret, 4)
+    return "{\n" _ret "\n}"
+}
+
+function ___json_stringify_machine_list(arr, keypath,     _l, _i, _ret){
+    _l = arr[ keypath T_LEN ]
+    if (_l == 0) return "[\n]"
+    _ret = ___json_stringify_machine_value( arr, keypath  S "\"" 1 "\"" )
+
+    for (_i=2; _i<=_l; _i++){
+        _ret = _ret "\n,\n" ___json_stringify_machine_value( arr, keypath S "\""  _i "\"" )
+    }
+
+    return "[\n" _ret "\n]"
+}
+
+function ___json_stringify_machine_value(arr, keypath,     _t, _klist, _i, _ret){
+    _t = arr[ keypath]
+    if (_t == T_DICT) {
+        return ___json_stringify_machine_dict(arr, keypath)
+    } else if (_t == T_LIST) {
+        return ___json_stringify_machine_list(arr, keypath)
+    } else {
+        return _t
+    }
+}
+
+function json_stringify_machine(arr, keypath,    _i, _len,_ret){
+    if (keypath != "") {
+        keypath=jpath(keypath)
+        return ___json_stringify_machine_value(arr, keypath)
+    }
+    _len = arr[ T_LEN ]
+    if (_len < 1)  return ""
+
+    _ret = ___json_stringify_machine_value( arr,  S "\"" 1 "\"")
+    for (_i=2; _i<=_len; ++_i) {
+        _ret = _ret "\n"___json_stringify_machine_value( arr,  S "\"" _i "\"")
+    }
+
+    return _ret
+}
+# EndSection
+''
+# Section: unquote and quote
+function unquote(str){
+    if (str !~ /^"/) { # "
+        return str
+    }
+    gsub(/\\\\/, "\001\001", str)
+    gsub(/\\"/, /"/, str)
+    gsub("\001\001", "\\\\", str)
+    return substr(str, 2, length(str)-2)
+}
+
+function quote(str){
+    gsub(/\\/, "\\\\", str)
+    gsub(/"/, "\\\"", str)
+    return "\"" str "\""
+}
+# EndSection
+''
+{
+    key = jiter($0)
+    if (key == "") next
+    kp = $0
+    kparrl = split(kp, kparr, "\001")
+    key = kparr[kparrl]
+    val = $0
 }
 '"
 $*

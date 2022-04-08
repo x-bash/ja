@@ -7,15 +7,13 @@ ___x_cmd_jawk_kp(){
                 -f "$__X_CMD_ROOT_MOD/jawk/lib/kp.awk" | \
     command awk '
 {
-    if (a == 0){
-        a = 1 - a
+    a = 1 - a
+    if (a == 0) val = $0
+    else {
         kp = $0
         kparrl = split(kp, kparr, "\001")
         key = kparr[kparrl]
         next()
-    } else {
-        a = 1 - a
-        val = $0
     }
 }
 '"
