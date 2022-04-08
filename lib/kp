@@ -4,7 +4,7 @@ ___x_cmd_jawk_kp(){
     ___x_cmd_jawk_tokenized | \
     command awk -f "$__X_CMD_ROOT_MOD/awk/lib/json.awk" \
                 -f "$__X_CMD_ROOT_MOD/awk/lib/jiter.awk" \
-                -f "$__X_CMD_ROOT_MOD/jawk/lib/kp" | \
+                -f "$__X_CMD_ROOT_MOD/jawk/lib/kp.awk" | \
     command awk '
 {
     if (a == 0){
