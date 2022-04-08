@@ -130,11 +130,10 @@ function quote(str){
 # EndSection
 ''
 {
-    key = jiter($0)
-    if (key == "") next
-    kp = $0
-    kparrl = split(kp, kparr, "\001")
-    key = kparr[kparrl]
+    kp = jiter($0)
+    if (kp == "") next
+    kal = split(kp, ka, S)
+    k = ka[kal]
     val = $0
 }
 '"

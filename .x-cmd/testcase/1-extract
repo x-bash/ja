@@ -15,33 +15,12 @@
 ]
 A
 
-
 # Print all name
 
-jawk kp '
-{
-    if (kparr[ kparrl ] == quote("name")) {
-        print val
-    }
-}
-'
+jawk kp 'k=="name"{ print val; }'
 
 # Print all name when age == 33
-jawk kp '
-{
-    if (val != "}")     next
-    if (! kpmatch(1, "*")) next
-    if ( get( kp, "age" ) == 33 ) print get( kp, "name" )
-}
-'
+jawk kp 'v=="}" && kpmatch(1, "*") && ( get( kp, "age" ) == 33 ) { print get( kp, "name" ) }'
 
 # Print all name when age == 33
-jawk kp '
-{
-    if (val != "}")     next
-    if (! kpmatch(1, "*")) next
-    if ( g( "age" ) == 33 ) print g( "name" )
-}
-'
-
-
+jawk kp 'v=="}" && kpmath(1, "*") && g("age") == 33 { print g( "name" ) }'

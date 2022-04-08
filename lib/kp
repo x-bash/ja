@@ -11,8 +11,8 @@ ___x_cmd_jawk_kp(){
     if (a == 0) val = $0
     else {
         kp = $0
-        kparrl = split(kp, kparr, "\001")
-        key = kparr[kparrl]
+        kal = split(kp, ka, "\001")
+        k = ka[kal]
         next()
     }
 }
