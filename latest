@@ -6,9 +6,9 @@
 
 ___x_cmd_jawk(){
     case "$1" in
-        t|tokenized)        ;;
-        kp)                 ;;      # just extract keypath, provide jstr
-        kpo)                ;;      # extract keypath, but also provide utils, provide jstr
+        t|tokenized)        ___x_cmd_jawk_tokenized "$@" ;;
+        kp)                 ___x_cmd_jawk_kp "$@" ;;      # just extract keypath, provide jstr
+        kpo)                ___x_cmd_jawk_kpo "$@" ;;      # extract keypath, but also provide utils, provide jstr
     esac
 }
 
