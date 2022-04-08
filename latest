@@ -3,7 +3,6 @@
 
 # license:      GPLv3
 
-
 ___x_cmd_jawk(){
     case "$1" in
         t|tokenized)        ___x_cmd_jawk_tokenized "$@" ;;
