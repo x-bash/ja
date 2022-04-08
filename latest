@@ -1,105 +1,116 @@
-# shellcheck shell=sh disable=SC2039,SC1090,SC3043,SC2263 # xrc
+# Author:       Li Junhao           l@x-cmd.com                             # xrc
+# shellcheck    shell=sh            disable=SC2039,SC1090,SC3043,SC2263
 
-# author:       Li Junhao           l@x-cmd.com
 # license:      GPLv3
 
-# LIB
-___x_cmd_awk_lib(){
-    local IFS="
-"
 
-    printf "%s\n" "default,$USE" | tr "," "\n" | while read -r lib; do
-        [ -z "$lib" ] && continue
-        xrc which "awk/lib/${lib}.awk"
-        printf " "
-        # printf "%s\n" "./${lib}.awk"
-    done | tr "\n" " "
-}
-
-___X_CMD_AWK_ALL_LIB="bit,math,ord,char,str,wcwidth,arr,ui,json,jiparse,jiparse_flat"
-___X_CMD_AWK_IMPLEMENTATION=
-
-___x_cmd_awk_detect_implemetation(){
-    if awk -Wv 2>&1 | grep -q "mawk"; then
-        ___X_CMD_AWK_IMPLEMENTATION=mawk
-        return
-    fi
-    ___X_CMD_AWK_IMPLEMENTATION=awk
-}
-___x_cmd_awk_impl(){
-    if [ -z "$___X_CMD_AWK_IMPLEMENTATION" ]; then
-        ___x_cmd_awk_detect_implemetation
-    fi
-    printf "%s\n" "$___X_CMD_AWK_IMPLEMENTATION"
-}
-
-___x_cmd_awk(){
-    local IFS="
-"
-
-    local op="$1";
-    case "$op" in
-        impl)
-            ___x_cmd_awk_impl ;;
-        file)   # This is core ...
-            local fp="$2"; [ "$#" -gt 1 ] && shift 2
-            local code
-            if ! code="$(eval cat "$(___x_cmd_awk_lib)" "$fp")"; then
-                printf "%s\n" "Cannot find out code."
-                return 1
-            fi
-            command awk "$@" "$code"
-            ;;
-        arg)
-            printf "%s %s" "-f" "awk/lib/default.awk"
-            for i in "$@"; do
-                printf " -f %s " "awk/lib/${i}.awk"
-                # case "$i" in
-                #     arr|bit|char|default|jiprint|jiter|jparse|json|math|ord|re|str|ui|var|wcwdith)
-
-                # esac
-            done
-            ;;
-        code)   # This will be in file
-            local code="$2"; [ "$#" -gt 1 ] && shift 2
-            command awk "$@" "$(eval cat "$(___x_cmd_awk_lib)")
-${code}"
-            ;;
-        src)
-            [ "$#" -gt 0 ] && shift
-            local IFS=" "
-            eval cat "$(___x_cmd_awk_lib) $*"
-            ;;
-        try)
-            local code="$2"; [ "$#" -gt 1 ] && shift 2
-            local USE="$___X_CMD_AWK_ALL_LIB"
-            command awk "$@" "$(eval cat "$(___x_cmd_awk_lib)")
-$code"
-            ;;
-        end)
-            local code="$2"; [ "$#" -gt 1 ] && shift 2
-            if [ "$code" = - ]; then
-                code="$(cat)"
-            fi
-            local USE="$___X_CMD_AWK_ALL_LIB"
-            printf "" | command awk "$@" "$(eval cat "$(___x_cmd_awk_lib)")
-END{
-    $code
-}"
-            ;;
-        _x_cmd_advise_json) printf "{}";;
-        *)
-            command awk "$@"
-            ;;
+___x_cmd_jawk(){
+    case "$1" in
+        t|tokenized)        ;;
+        kp)                 ;;      # just extract keypath, provide jstr
+        kpo)                ;;      # extract keypath, but also provide utils, provide jstr
     esac
 }
 
-# x awk file=a.txt
+___x_cmd_jawk_tokenized(){
+    command awk -f "$__X_CMD_ROOT_MOD/awk/lib/json.awk" \
+                -f "$__X_CMD_ROOT_MOD/jawk/lib/tokenized_main"
+}
 
-# x awk code='{
-#
-# }' $@
+___x_cmd_jawk_kp(){
+    local IFS=' '
+    ___x_cmd_jawk_tokenized | \
+    command awk -f "$__X_CMD_ROOT_MOD/awk/lib/json.awk" \
+                -f "$__X_CMD_ROOT_MOD/awk/lib/jiter.awk" \
+                -f "$__X_CMD_ROOT_MOD/jawk/lib/kp" | \
+    command awk '
+{
+    if (a == 0){
+        a = 1 - a
+        kp = $0
+        kparrl = split(kp, kparr, "\001")
+        key = kparr[kparrl]
+        next()
+    } else {
+        a = 1 - a
+        val = $0
+    }
+}
+'"
+$*
+"
 
-alias xawk=___x_cmd_awk
+}
 
-xrc setmain ___x_cmd_awk
+___x_cmd_jawk_kpo(){
+    local IFS=' '
+    ___x_cmd_jawk_tokenized | \
+    command awk '
+function jiter_init( keypath_prefix ) {
+    JITER_FA_KEYPATH    = keypath_prefix
+    JITER_STATE         = T_ROOT
+    JITER_LAST_KP       = ""
+    JITER_LEVEL         = 0
+    JITER_CURLEN        = 0
+    JITER_LAST_KL       = ""
+}
+
+function jiter( item, stack,  _res ) {
+    if (item ~ /^[,:]*$/) return
+    if (item ~ /^[tfn"0-9+-]/) #"   # (item !~ /^[\{\}\[\]]$/) {
+    {
+        if ( JITER_LAST_KP != "" ) {
+            _res = JITER_FA_KEYPATH S JITER_LAST_KP
+            JITER_LAST_KP = ""
+            return _res
+        }
+        JITER_CURLEN = JITER_CURLEN + 1
+        if ( JITER_STATE != T_DICT ) {
+            return JITER_FA_KEYPATH S "\"" JITER_CURLEN "\""
+        }
+        JITER_LAST_KP = item
+        # return JITER_FA_KEYPATH S JITER_CURLEN
+    } else if (item ~ /^[\[\{]$/) { # }
+        if ( JITER_STATE != T_DICT ) {
+            JITER_CURLEN = JITER_CURLEN + 1
+            stack[ JITER_FA_KEYPATH T_LEN ] = JITER_CURLEN
+            JITER_FA_KEYPATH = JITER_FA_KEYPATH S "\"" JITER_CURLEN "\""
+        } else {
+            stack[ JITER_FA_KEYPATH T_LEN ] = JITER_CURLEN
+            JITER_FA_KEYPATH = JITER_FA_KEYPATH S JITER_LAST_KP
+            JITER_LAST_KP = ""
+        }
+        JITER_STATE = item
+        JITER_CURLEN = 0
+
+        stack[ JITER_FA_KEYPATH ] = item
+        stack[ ++ JITER_LEVEL ] = JITER_FA_KEYPATH
+        return JITER_FA_KEYPATH
+    } else {
+        stack[ JITER_FA_KEYPATH T_LEN ] = JITER_CURLEN
+
+        JITER_FA_KEYPATH = stack[ --JITER_LEVEL ]
+        JITER_STATE = stack[ JITER_FA_KEYPATH ]
+        JITER_CURLEN = stack[ JITER_FA_KEYPATH T_LEN ]
+    }
+    return ""
+}
+
+
+{
+    if (a == 0){
+        a = 1 - a
+        kp = $0
+        kparrl = split(kp, kparr, "\001")
+        key = kparr[kparrl]
+        next()
+    } else {
+        a = 1 - a
+        val = $0
+    }
+}
+'"
+$*
+"
+
+}
