@@ -38,19 +38,19 @@ A
 # Print all name
 
 # jq '.name'
-jawk kp 'k()=="name"{ print v(); }'
+jawk 'k()=="name"{ print v(); }'
 
-jawk kp 'kpglob("class*", "name"){ print v(); }'
+jawk 'kpglob("class*", "name"){ print v(); }'
 
-jawk kp '_[l]=="name" && _[l-1] ~ /^class/{ print v(); }'
-
-# jq 'if .age==33 then .name done'
-# Print all name when age == 33
-jawk kp 'v()=="}" && kpglob(1, "*") && get( kp, "age" ) == 33 { print get( kp, "name" ) }'
+jawk '_[l]=="name" && _[l-1] ~ /^class/{ print v(); }'
 
 # jq 'if .age==33 then .name done'
 # Print all name when age == 33
-jawk kp 'v()=="}" && kpopt(1, "*") && g("age") == 33 { print g( "name" ) }'
+jawk 'v()=="}" && kpglob(1, "*") && get( kp, "age" ) == 33 { print get( kp, "name" ) }'
+
+# jq 'if .age==33 then .name done'
+# Print all name when age == 33
+jawk 'v()=="}" && kpopt(1, "*") && g("age") == 33 { print g( "name" ) }'
 
 # jawk kp 'BEGIN{ kpopt(1, "*", "name") }'
 
