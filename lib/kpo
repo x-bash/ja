@@ -3,13 +3,7 @@ ___x_cmd_jawk_kpo(){
     local IFS=' '
     ___x_cmd_jawk_tokenized | \
     command awk "$(cat "$___X_CMD_ROOT_MOD/jawk/lib/kpo.awk")"'
-{
-    kp = jiter($0)
-    if (kp == "") next
-    kal = split(kp, ka, S)
-    k = ka[kal]
-    v = $0
-}
+
 '"
 $*
 "

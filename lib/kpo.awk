@@ -41,7 +41,7 @@ function get( v1, v2, v3, v4, v5, v6, v7, v8, v9 ){
 }
 
 function g( v1, v2, v3, v4, v5, v6, v7, v8, v9 ){
-    return _[ JITER_FA_KEYPATH S kpgen( v1, v2, v3, v4, v5, v6, v7, v8, v9 ) ]
+    return _[ kp S kpgen( v1, v2, v3, v4, v5, v6, v7, v8, v9 ) ]
 }
 
 function kpmatch( v1, v2, v3, v4, v5, v6, v7, v8, v9 ){
@@ -84,7 +84,6 @@ function kpglob( v1, v2, v3, v4, v5, v6, v7, v8, v9 ){
 
 # Section: Machine Stringify
 function ___json_stringify_machine_dict(arr, keypath,     _klist, _l, _i, _key, _val, _ret){
-
     _l = jdict_keys2arr(arr, keypath, _klist)
 
     if (_l == 0) return "{\n}"
@@ -200,12 +199,17 @@ function jiter( item,  _res ) {
         _[ JITER_FA_KEYPATH ] = item
         _[ JITER_LEVEL + JITER_OFFSET_FULLKP ] = JITER_FA_KEYPATH
         return JITER_FA_KEYPATH
+        # return ""
     } else {
         _[ JITER_FA_KEYPATH T_LEN ] = JITER_CURLEN
+
+        _res = JITER_FA_KEYPATH
 
         JITER_FA_KEYPATH = _[ --JITER_LEVEL + JITER_OFFSET_FULLKP ]
         JITER_STATE = _[ JITER_FA_KEYPATH ]
         JITER_CURLEN = _[ JITER_FA_KEYPATH T_LEN ]
+
+        return _res
     }
     return ""
 }
