@@ -42,7 +42,7 @@ jawk kp 'k()=="name"{ print v(); }'
 
 jawk kp 'kpglob("class*", "name"){ print v(); }'
 
-jawk kp 'ka[kal-1]{ print v(); }'
+jawk kp '_[l]=="name" && _[l-1] ~ /^class/{ print v(); }'
 
 # jq 'if .age==33 then .name done'
 # Print all name when age == 33

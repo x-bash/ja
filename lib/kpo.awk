@@ -1,7 +1,17 @@
+BEGIN {
+    false = 0
+    FALSE = 0
+    true = 1
+    TRUE = 1
+    S = "\001"
+    T = "\002"
+    L = "\003"
+}
+
 
 # Section: utils
-function v(){ return _v == "" ? _v = unquote( val ): _v; }
 function k(){ return _k == "" ? _k = unquote( key ): _k; }
+function v(){ return _v == "" ? _v = unquote( val ): _v; }
 
 function kpgen( v1, v2, v3, v4, v5, v6, v7, v8, v9, _ret ){
     _ret = ""
@@ -35,7 +45,7 @@ function g( v1, v2, v3, v4, v5, v6, v7, v8, v9 ){
 }
 
 function kpmatch( v1, v2, v3, v4, v5, v6, v7, v8, v9 ){
-    match(kp, kpgen( v1, v2, v3, v4, v5, v6, v7, v8, v9 ) "$" )
+    return match(kp, kpgen( v1, v2, v3, v4, v5, v6, v7, v8, v9 ) "$" )
 }
 
 function glob_item( key ){
@@ -153,10 +163,11 @@ function jiter_init( keypath_prefix ) {
     JITER_LAST_KP       = ""
     JITER_LEVEL         = 0
     JITER_CURLEN        = 0
-    JITER_LAST_KL       = ""
+
+    JITER_OFFSET_FULLKP = 10000
 }
 
-function jiter( item, _,  _res ) {
+function jiter( item,  _res ) {
     if (item ~ /^[,:]*$/) return
     if (item ~ /^[tfn"0-9+-]/) #"   # (item !~ /^[\{\}\[\]]$/) {
     {
@@ -176,21 +187,23 @@ function jiter( item, _,  _res ) {
             JITER_CURLEN = JITER_CURLEN + 1
             _[ JITER_FA_KEYPATH T_LEN ] = JITER_CURLEN
             JITER_FA_KEYPATH = JITER_FA_KEYPATH S "\"" JITER_CURLEN "\""
+            _[ ++ JITER_LEVEL ] = JITER_CURLEN
         } else {
             _[ JITER_FA_KEYPATH T_LEN ] = JITER_CURLEN
             JITER_FA_KEYPATH = JITER_FA_KEYPATH S JITER_LAST_KP
+            _[ ++ JITER_LEVEL ] = JITER_LAST_KP
             JITER_LAST_KP = ""
         }
         JITER_STATE = item
         JITER_CURLEN = 0
 
         _[ JITER_FA_KEYPATH ] = item
-        _[ ++ JITER_LEVEL ] = JITER_FA_KEYPATH
+        _[ JITER_LEVEL + JITER_OFFSET_FULLKP ] = JITER_FA_KEYPATH
         return JITER_FA_KEYPATH
     } else {
         _[ JITER_FA_KEYPATH T_LEN ] = JITER_CURLEN
 
-        JITER_FA_KEYPATH = _[ --JITER_LEVEL ]
+        JITER_FA_KEYPATH = _[ --JITER_LEVEL + JITER_OFFSET_FULLKP ]
         JITER_STATE = _[ JITER_FA_KEYPATH ]
         JITER_CURLEN = _[ JITER_FA_KEYPATH T_LEN ]
     }
@@ -201,11 +214,10 @@ function jiter( item, _,  _res ) {
 {
     kp = jiter( $0 )
     if (kp == "") next
-    kal = split(kp, ka, S)
-    key = ka[kal]
+    l = JITER_LEVEL
+    key = _[l]
     val = $0
 
     _v = ""
+    _k = ""
 }
-
-
