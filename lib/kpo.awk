@@ -222,7 +222,6 @@ function jiter( item,  _res ) {
     kp = jiter( $0 )
     if (kp == "") next
     l = JITER_LEVEL
-    val = $0
 
     _v = ""
     _k = ""
