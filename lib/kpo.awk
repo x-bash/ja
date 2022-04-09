@@ -87,60 +87,6 @@ function kpglob( v1, v2, v3, v4, v5, v6, v7, v8, v9 ){
 
 # EndSection
 
-# Section: Machine Stringify
-function ___json_stringify_machine_dict(arr, keypath,     _klist, _l, _i, _key, _val, _ret){
-    _l = jdict_keys2arr(arr, keypath, _klist)
-
-    if (_l == 0) return "{\n}"
-
-    for (_i=1; _i<=_l; _i++){
-        _key = _klist[ _i ]
-        # _val = arr[ keypath S _key ]
-        _ret = _ret "\n,\n" _key "\n:\n" ___json_stringify_machine_value( arr, keypath S _key )
-    }
-    _ret = substr(_ret, 4)
-    return "{\n" _ret "\n}"
-}
-
-function ___json_stringify_machine_list(arr, keypath,     _l, _i, _ret){
-    _l = arr[ keypath T_LEN ]
-    if (_l == 0) return "[\n]"
-    _ret = ___json_stringify_machine_value( arr, keypath  S "\"" 1 "\"" )
-
-    for (_i=2; _i<=_l; _i++){
-        _ret = _ret "\n,\n" ___json_stringify_machine_value( arr, keypath S "\""  _i "\"" )
-    }
-
-    return "[\n" _ret "\n]"
-}
-
-function ___json_stringify_machine_value(arr, keypath,     _t, _klist, _i, _ret){
-    _t = arr[ keypath]
-    if (_t == "{") {
-        return ___json_stringify_machine_dict(arr, keypath)
-    } else if (_t == "[") {
-        return ___json_stringify_machine_list(arr, keypath)
-    } else {
-        return _t
-    }
-}
-
-function json_stringify_machine(arr, keypath,    _i, _len,_ret){
-    if (keypath != "") {
-        keypath=jpath(keypath)
-        return ___json_stringify_machine_value(arr, keypath)
-    }
-    _len = arr[ T_LEN ]
-    if (_len < 1)  return ""
-
-    _ret = ___json_stringify_machine_value( arr,  S "\"" 1 "\"")
-    for (_i=2; _i<=_len; ++_i) {
-        _ret = _ret "\n"___json_stringify_machine_value( arr,  S "\"" _i "\"")
-    }
-
-    return _ret
-}
-# EndSection
 
 # Section: unquote and quote
 function unquote(str){
