@@ -67,7 +67,7 @@ function glob( v1, v2, v3, v4, v5, v6, v7, v8, v9 ){
 }
 
 function kpglob( v1, v2, v3, v4, v5, v6, v7, v8, v9 ){
-    return match( kp, glob ) "$" )
+    return match( kp, glob(v1, v2, v3, v4, v5, v6, v7, v8, v9) "$" )
 }
 
 # EndSection
