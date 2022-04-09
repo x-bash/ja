@@ -111,9 +111,9 @@ function ___json_stringify_machine_list(arr, keypath,     _l, _i, _ret){
 
 function ___json_stringify_machine_value(arr, keypath,     _t, _klist, _i, _ret){
     _t = arr[ keypath]
-    if (_t == T_DICT) {
+    if (_t == "{") {
         return ___json_stringify_machine_dict(arr, keypath)
-    } else if (_t == T_LIST) {
+    } else if (_t == "[") {
         return ___json_stringify_machine_list(arr, keypath)
     } else {
         return _t
@@ -173,24 +173,27 @@ function jiter( item,  _res ) {
         if ( JITER_LAST_KP != "" ) {
             _res = JITER_FA_KEYPATH S JITER_LAST_KP
             JITER_LAST_KP = ""
+            key = JITER_LAST_KP
             return _res
         }
         JITER_CURLEN = JITER_CURLEN + 1
-        if ( JITER_STATE != T_DICT ) {
+        if ( JITER_STATE != "{" ) {
             return JITER_FA_KEYPATH S "\"" JITER_CURLEN "\""
         }
         JITER_LAST_KP = item
         # return JITER_FA_KEYPATH S JITER_CURLEN
     } else if (item ~ /^[\[\{]$/) { # }
-        if ( JITER_STATE != T_DICT ) {
+        if ( JITER_STATE != "{" } ) {
             JITER_CURLEN = JITER_CURLEN + 1
             _[ JITER_FA_KEYPATH T_LEN ] = JITER_CURLEN
             JITER_FA_KEYPATH = JITER_FA_KEYPATH S "\"" JITER_CURLEN "\""
             _[ ++ JITER_LEVEL ] = JITER_CURLEN
+            key = JITER_CURLEN
         } else {
             _[ JITER_FA_KEYPATH T_LEN ] = JITER_CURLEN
             JITER_FA_KEYPATH = JITER_FA_KEYPATH S JITER_LAST_KP
             _[ ++ JITER_LEVEL ] = JITER_LAST_KP
+            key = JITER_LAST_KP
             JITER_LAST_KP = ""
         }
         JITER_STATE = item
@@ -219,7 +222,6 @@ function jiter( item,  _res ) {
     kp = jiter( $0 )
     if (kp == "") next
     l = JITER_LEVEL
-    key = _[l]
     val = $0
 
     _v = ""
