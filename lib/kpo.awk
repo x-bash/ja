@@ -160,7 +160,7 @@ function jiter_init( keypath_prefix ) {
     JITER_FA_KEYPATH    = keypath_prefix
     JITER_STATE         = T_ROOT
     JITER_LAST_KP       = ""
-    JITER_LEVEL         = 0
+    l                   = 0
     JITER_CURLEN        = 0
 
     JITER_OFFSET_FULLKP = 10000
@@ -187,12 +187,12 @@ function jiter( item,  _res ) {
             JITER_CURLEN = JITER_CURLEN + 1
             _[ JITER_FA_KEYPATH T_LEN ] = JITER_CURLEN
             JITER_FA_KEYPATH = JITER_FA_KEYPATH S "\"" JITER_CURLEN "\""
-            _[ ++ JITER_LEVEL ] = JITER_CURLEN
+            _[ ++ l ] = JITER_CURLEN
             key = JITER_CURLEN
         } else {
             _[ JITER_FA_KEYPATH T_LEN ] = JITER_CURLEN
             JITER_FA_KEYPATH = JITER_FA_KEYPATH S JITER_LAST_KP
-            _[ ++ JITER_LEVEL ] = JITER_LAST_KP
+            _[ ++ l ] = JITER_LAST_KP
             key = JITER_LAST_KP
             JITER_LAST_KP = ""
         }
@@ -200,7 +200,7 @@ function jiter( item,  _res ) {
         JITER_CURLEN = 0
 
         _[ JITER_FA_KEYPATH ] = item
-        _[ JITER_LEVEL + JITER_OFFSET_FULLKP ] = JITER_FA_KEYPATH
+        _[ l + JITER_OFFSET_FULLKP ] = JITER_FA_KEYPATH
         return JITER_FA_KEYPATH
         # return ""
     } else {
@@ -208,7 +208,7 @@ function jiter( item,  _res ) {
 
         _res = JITER_FA_KEYPATH
 
-        JITER_FA_KEYPATH = _[ --JITER_LEVEL + JITER_OFFSET_FULLKP ]
+        JITER_FA_KEYPATH = _[ --l + JITER_OFFSET_FULLKP ]
         JITER_STATE = _[ JITER_FA_KEYPATH ]
         JITER_CURLEN = _[ JITER_FA_KEYPATH T_LEN ]
 
@@ -219,10 +219,7 @@ function jiter( item,  _res ) {
 # EndSection
 
 {
-    kp = jiter( $0 )
-    if (kp == "") next
-    l = JITER_LEVEL
-
+    if ( (kp = jiter( $0 )) == "" ) next
     _v = ""
     _k = ""
 }
