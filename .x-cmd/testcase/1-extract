@@ -15,15 +15,42 @@
 ]
 A
 
+: <<A
+{
+    classA: [
+        {
+            name: alpha,
+            age: 33
+        },
+        {
+        name: beta,
+        age: 26
+        }
+    ]
+    classB: [
+        {
+            name: delta,
+            age: 33
+        }
+    ]
+A
+
 # Print all name
 
 # jq '.name'
-jawk kp 'k()=="name"{ print v(); }'
+jawk 'k()=="name"{ print v(); }'
+
+jawk 'kpglob("class*", "name"){ print v(); }'
+
+jawk '_[l]=="name" && _[l-1] ~ /^class/{ print v(); }'
 
 # jq 'if .age==33 then .name done'
 # Print all name when age == 33
-jawk kp 'v()=="}" && kpmatch(1, "*") && get( kp, "age" ) == 33 { print get( kp, "name" ) }'
+jawk 'v()=="}" && kpglob(1, "*") && get( kp, "age" ) == 33 { print get( kp, "name" ) }'
 
 # jq 'if .age==33 then .name done'
 # Print all name when age == 33
-jawk kp 'v()=="}" && kpmath(1, "*") && g("age") == 33 { print g( "name" ) }'
+jawk 'v()=="}" && kpopt(1, "*") && g("age") == 33 { print g( "name" ) }'
+
+# jawk kp 'BEGIN{ kpopt(1, "*", "name") }'
+
