@@ -15,10 +15,34 @@
 ]
 A
 
+: <<A
+{
+    classA: [
+        {
+            name: alpha,
+            age: 33
+        },
+        {
+        name: beta,
+        age: 26
+        }
+    ]
+    classB: [
+        {
+            name: delta,
+            age: 33
+        }
+    ]
+A
+
 # Print all name
 
 # jq '.name'
 jawk kp 'k()=="name"{ print v(); }'
+
+jawk kp 'kpglob("classA", "name"){ print v(); }'
+
+jawk kp 'ka[kal-1]{ print v(); }'
 
 # jq 'if .age==33 then .name done'
 # Print all name when age == 33

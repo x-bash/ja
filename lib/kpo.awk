@@ -6,32 +6,36 @@ function k(){ return _k == "" ? _k = unquote( key ): _k; }
 function kpgen( v1, v2, v3, v4, v5, v6, v7, v8, v9, _ret ){
     _ret = ""
     if ( v1 == "" ) return _ret
-    _ret = _ret S v1
+    _ret = _ret S quote( v1 )
     if ( v2 == "" ) return _ret
-    _ret = _ret S v2
+    _ret = _ret S quote( v2 )
     if ( v3 == "" ) return _ret
-    _ret = _ret S v3
+    _ret = _ret S quote( v3 )
     if ( v4 == "" ) return _ret
-    _ret = _ret S v4
+    _ret = _ret S quote( v4 )
     if ( v5 == "" ) return _ret
-    _ret = _ret S v5
+    _ret = _ret S quote( v5 )
     if ( v6 == "" ) return _ret
-    _ret = _ret S v6
+    _ret = _ret S quote( v6 )
     if ( v7 == "" ) return _ret
-    _ret = _ret S v7
+    _ret = _ret S quote( v7 )
     if ( v8 == "" ) return _ret
-    _ret = _ret S v8
+    _ret = _ret S quote( v8 )
     if ( v9 == "" ) return _ret
-    _ret = _ret S v9
+    _ret = _ret S quote( v9 )
     return _ret
 }
 
+function get( v1, v2, v3, v4, v5, v6, v7, v8, v9 ){
+    return _[ kpgen( v1, v2, v3, v4, v5, v6, v7, v8, v9 ) ]
+}
+
 function g( v1, v2, v3, v4, v5, v6, v7, v8, v9 ){
-    return JITER_FA_KEYPATH S get( v1, v2, v3, v4, v5, v6, v7, v8, v9 )
+    return _[ JITER_FA_KEYPATH S kpgen( v1, v2, v3, v4, v5, v6, v7, v8, v9 ) ]
 }
 
 function kpmatch( v1, v2, v3, v4, v5, v6, v7, v8, v9 ){
-    kpgen( v1, v2, v3, v4, v5, v6, v7, v8, v9 )
+    match(kp, kpgen( v1, v2, v3, v4, v5, v6, v7, v8, v9 ) "$" )
 }
 
 function glob_item( key ){
@@ -63,7 +67,7 @@ function glob( v1, v2, v3, v4, v5, v6, v7, v8, v9 ){
 }
 
 function kpglob( v1, v2, v3, v4, v5, v6, v7, v8, v9 ){
-    return match( kp, glob ) )
+    return match( kp, glob ) "$" )
 }
 
 # EndSection
@@ -152,7 +156,7 @@ function jiter_init( keypath_prefix ) {
     JITER_LAST_KL       = ""
 }
 
-function jiter( item, stack,  _res ) {
+function jiter( item, _,  _res ) {
     if (item ~ /^[,:]*$/) return
     if (item ~ /^[tfn"0-9+-]/) #"   # (item !~ /^[\{\}\[\]]$/) {
     {
@@ -170,32 +174,32 @@ function jiter( item, stack,  _res ) {
     } else if (item ~ /^[\[\{]$/) { # }
         if ( JITER_STATE != T_DICT ) {
             JITER_CURLEN = JITER_CURLEN + 1
-            stack[ JITER_FA_KEYPATH T_LEN ] = JITER_CURLEN
+            _[ JITER_FA_KEYPATH T_LEN ] = JITER_CURLEN
             JITER_FA_KEYPATH = JITER_FA_KEYPATH S "\"" JITER_CURLEN "\""
         } else {
-            stack[ JITER_FA_KEYPATH T_LEN ] = JITER_CURLEN
+            _[ JITER_FA_KEYPATH T_LEN ] = JITER_CURLEN
             JITER_FA_KEYPATH = JITER_FA_KEYPATH S JITER_LAST_KP
             JITER_LAST_KP = ""
         }
         JITER_STATE = item
         JITER_CURLEN = 0
 
-        stack[ JITER_FA_KEYPATH ] = item
-        stack[ ++ JITER_LEVEL ] = JITER_FA_KEYPATH
+        _[ JITER_FA_KEYPATH ] = item
+        _[ ++ JITER_LEVEL ] = JITER_FA_KEYPATH
         return JITER_FA_KEYPATH
     } else {
-        stack[ JITER_FA_KEYPATH T_LEN ] = JITER_CURLEN
+        _[ JITER_FA_KEYPATH T_LEN ] = JITER_CURLEN
 
-        JITER_FA_KEYPATH = stack[ --JITER_LEVEL ]
-        JITER_STATE = stack[ JITER_FA_KEYPATH ]
-        JITER_CURLEN = stack[ JITER_FA_KEYPATH T_LEN ]
+        JITER_FA_KEYPATH = _[ --JITER_LEVEL ]
+        JITER_STATE = _[ JITER_FA_KEYPATH ]
+        JITER_CURLEN = _[ JITER_FA_KEYPATH T_LEN ]
     }
     return ""
 }
 # EndSection
 
 {
-    kp = jiter($0, _ )
+    kp = jiter( $0 )
     if (kp == "") next
     kal = split(kp, ka, S)
     key = ka[kal]
