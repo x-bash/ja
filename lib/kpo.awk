@@ -8,6 +8,11 @@ BEGIN {
     L = "\003"
 }
 
+# Section: opt
+function kpopt(){
+
+}
+# EndSection
 
 # Section: utils
 function k(){ return _k == "" ? _k = unquote( key ): _k; }

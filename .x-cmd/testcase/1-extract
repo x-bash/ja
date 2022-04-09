@@ -50,4 +50,7 @@ jawk kp 'v()=="}" && kpglob(1, "*") && get( kp, "age" ) == 33 { print get( kp, "
 
 # jq 'if .age==33 then .name done'
 # Print all name when age == 33
-jawk kp 'v()=="}" && kpglob(1, "*") && g("age") == 33 { print g( "name" ) }'
+jawk kp 'v()=="}" && kpopt(1, "*") && g("age") == 33 { print g( "name" ) }'
+
+# jawk kp 'BEGIN{ kpopt(1, "*", "name") }'
+
