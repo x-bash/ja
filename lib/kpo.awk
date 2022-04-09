@@ -134,7 +134,7 @@ function jiter( item,  _res ) {
         JITER_LAST_KP = item
         # return JITER_FA_KEYPATH S JITER_CURLEN
     } else if (item ~ /^[\[\{]$/) { # }
-        if ( JITER_STATE != "{" } ) {
+        if ( JITER_STATE != "{" ) {
             JITER_CURLEN = JITER_CURLEN + 1
             _[ JITER_FA_KEYPATH T_LEN ] = JITER_CURLEN
             JITER_FA_KEYPATH = JITER_FA_KEYPATH S "\"" JITER_CURLEN "\""
