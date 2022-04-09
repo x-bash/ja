@@ -22,8 +22,8 @@ jawk kp 'k()=="name"{ print v(); }'
 
 # jq 'if .age==33 then .name done'
 # Print all name when age == 33
-jawk kp 'v()=="}" && kpmatch(1, "*") && get( kp, "age" ) == 33 { print get( kp, "name" ) }'
+jawk kp 'v()=="}" && kpglob(1, "*") && get( kp, "age" ) == 33 { print get( kp, "name" ) }'
 
 # jq 'if .age==33 then .name done'
 # Print all name when age == 33
-jawk kp 'v()=="}" && kpmath(1, "*") && g("age") == 33 { print g( "name" ) }'
+jawk kp 'v()=="}" && kpglob(1, "*") && g("age") == 33 { print g( "name" ) }'

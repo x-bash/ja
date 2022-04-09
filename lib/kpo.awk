@@ -1,10 +1,10 @@
 
 # Section: utils
-
 function v(){ return _v == "" ? _v = unquote( val ): _v; }
 function k(){ return _k == "" ? _k = unquote( key ): _k; }
-function g( v1, v2, v3, v4, v5, v6, v7, v8, v9, _ret ){
-    _ret = S
+
+function kpgen( v1, v2, v3, v4, v5, v6, v7, v8, v9, _ret ){
+    _ret = ""
     if ( v1 == "" ) return _ret
     _ret = _ret S v1
     if ( v2 == "" ) return _ret
@@ -24,6 +24,46 @@ function g( v1, v2, v3, v4, v5, v6, v7, v8, v9, _ret ){
     if ( v9 == "" ) return _ret
     _ret = _ret S v9
     return _ret
+}
+
+function g( v1, v2, v3, v4, v5, v6, v7, v8, v9 ){
+    return JITER_FA_KEYPATH S get( v1, v2, v3, v4, v5, v6, v7, v8, v9 )
+}
+
+function kpmatch( v1, v2, v3, v4, v5, v6, v7, v8, v9 ){
+    kpgen( v1, v2, v3, v4, v5, v6, v7, v8, v9 )
+}
+
+function glob_item( key ){
+    gsub(/\*/, /[^\001]+/, key)
+    return key
+}
+
+function glob( v1, v2, v3, v4, v5, v6, v7, v8, v9 ){
+    _ret = ""
+    if ( v1 == "" ) return _ret
+    _ret = _ret S glob_item( v1 )
+    if ( v2 == "" ) return _ret
+    _ret = _ret S glob_item( v2 )
+    if ( v3 == "" ) return _ret
+    _ret = _ret S glob_item( v3 )
+    if ( v4 == "" ) return _ret
+    _ret = _ret S glob_item( v4 )
+    if ( v5 == "" ) return _ret
+    _ret = _ret S glob_item( v5 )
+    if ( v6 == "" ) return _ret
+    _ret = _ret S glob_item( v6 )
+    if ( v7 == "" ) return _ret
+    _ret = _ret S glob_item( v7 )
+    if ( v8 == "" ) return _ret
+    _ret = _ret S glob_item( v8 )
+    if ( v9 == "" ) return _ret
+    _ret = _ret S glob_item( v9 )
+    return _ret
+}
+
+function kpglob( v1, v2, v3, v4, v5, v6, v7, v8, v9 ){
+    return match( kp, glob ) )
 }
 
 # EndSection
