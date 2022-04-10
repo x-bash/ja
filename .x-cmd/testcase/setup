@@ -1,0 +1,31 @@
+function data_class(){
+    x jo '{
+        classA: [
+            {
+                name: el,
+                age: 12,
+                score: 100
+            },
+            {
+                name: alpha,
+                age: 13,
+                score: 100
+            }
+        ],
+        classB: [
+            {
+                name: John,
+                age: 12,
+                score: 70
+            },
+            {
+                name: Joseph,
+                age: 13,
+                score: 69
+            }
+        ]
+
+    }'
+}
+
+alias ja=___x_cmd_jawk
