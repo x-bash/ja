@@ -22,10 +22,10 @@ data_class | ja 'km("score"){ s+=v0; c++; } END{ print s/c; }'
 data_class | ja 'krm("score"){ s+=v0; c++; } END{ print s/c; }'
 
 
-eval "$(data_class | ja 'k()=="score"{ s+=v0; c++; } END{ e("avg", s/c); }')"    # printf "%s" "$avg"
+eval "$(data_class | ja 'K~/sco/{ s+=V; c++; } END{ e("avg", s/c); }')"    # printf "%s" "$avg"
 
-eval "$(data_class | ja 'k()=="score"{ s+=v0; c++; } END{ e_(s/c); }')"    # printf "%s" "$_"
-eval "$(data_class | ja 'k("score"){ s+=v0; c++; } END{ e_(s/c); }')"    # printf "%s" "$_"
+eval "$(data_class | ja 'K~/sco/{ s+=V; c++; } END{ e_(s/c); }')"    # printf "%s" "$_"
+eval "$(data_class | ja 'k("score"){ s+=V; c++; } END{ e_(s/c); }')"    # printf "%s" "$_"
 
 eval "$(data_class | ja '_[3]=="score"{ s+=v0; c++; } END{ e_(s/c); }')"    # printf "%s" "$_"
 
