@@ -80,6 +80,14 @@ function kpglob( v1, v2, v3, v4, v5, v6, v7, v8, v9 ){
 
 
 # Section: unquote and quote
+function env(var, val){
+    printf("%s=%s", var, quote(val))
+}
+
+function env_(val){
+    env(_, val)
+}
+
 function unquote(str){
     if (str !~ /^"/) { # "
         return str
