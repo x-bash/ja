@@ -80,15 +80,12 @@ function kpglob( v1, v2, v3, v4, v5, v6, v7, v8, v9 ){
 
 
 # Section: unquote and quote
-function env(var, val){
-    printf("%s=%s", var, quote(val))
-}
+function e(var, val){   printf("%s=%s", var, val); }
+function e_(val){ e(_, val); }
+function qe(var, val){   printf("%s=%s", var, quote(val)); }
+function qe_(val){ eq(_, val); }
 
-function env_(val){
-    env(_, val)
-}
-
-function unquote(str){
+function uq(str){
     if (str !~ /^"/) { # "
         return str
     }
@@ -98,7 +95,7 @@ function unquote(str){
     return substr(str, 2, length(str)-2)
 }
 
-function quote(str){
+function q(str){
     gsub(/\\/, "\\\\", str)
     gsub(/"/, "\\\"", str)
     return "\"" str "\""
