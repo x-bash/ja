@@ -9,23 +9,6 @@ BEGIN {
 }
 
 
-# Section: unquote and quote
-function unquote(str){
-    if (str !~ /^"/) { # "
-        return str
-    }
-    gsub(/\\\\/, "\001\001", str)
-    gsub(/\\"/, /"/, str)
-    gsub("\001\001", "\\\\", str)
-    return substr(str, 2, length(str)-2)
-}
-
-function quote(str){
-    gsub(/\\/, "\\\\", str)
-    gsub(/"/, "\\\"", str)
-    return "\"" str "\""
-}
-# EndSection
 
 # Section: jiter
 function jiter_init( keypath_prefix ) {
