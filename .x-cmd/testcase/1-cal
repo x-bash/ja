@@ -1,15 +1,28 @@
 data_class | ja '
 l==2{ clist[ ++clistl ] = k() }
 k()=="score"{
-    out[ _[l-1] ] += v()
-    count[ _[l-1] ] ++
+    total[ _[l] ] += V
+    count[ _[l] ] ++
 }
 
 END{
     for (i=1; i<=clistl; ++i) {
         c = clist[i]
-        printf("%s: [number=%s] [average=%s]", c, count[c], out[c]/count[c])
+        printf("%s: [number=%s] [average=%s]", c, count[c], total[c]/count[c])
     }
+}
+
+'
+
+data_class | ja '
+k()=="score"{
+    total[ _[l] ] += V
+    count[ _[l] ] ++
+}
+
+END{
+    for (c in total)
+        printf("%s: [number=%s] [average=%s]", uq(c), count[c], total[c]/count[c])
 }
 
 '
