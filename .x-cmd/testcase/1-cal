@@ -40,5 +40,10 @@ eval "$(data_class | ja 'K~/sco/{ s+=V; c++; } END{ e("avg", s/c); }')"    # pri
 eval "$(data_class | ja 'K~/sco/{ s+=V; c++; } END{ e_(s/c); }')"    # printf "%s" "$_"
 eval "$(data_class | ja 'k("score"){ s+=V; c++; } END{ e_(s/c); }')"    # printf "%s" "$_"
 
-eval "$(data_class | ja '_[3]=="score"{ s+=v0; c++; } END{ e_(s/c); }')"    # printf "%s" "$_"
+eval "$(data_class | ja '_[2]~/sco/{ s+=v0; c++; } END{ e_(s/c); }')"    # printf "%s" "$_"
 
+avg="$(data_class | ja '_[2]~/sco/{ s+=v0; c++; } END{ print(s/c); }')"    # printf "%s" "$_"
+
+data_class | jq -r .name
+data_class | ja 'k()=="name"{ print v(); }'
+data_class | ja '{ pr("name") }'

@@ -101,4 +101,3 @@ function q(str){
     return "\"" str "\""
 }
 # EndSection
-
