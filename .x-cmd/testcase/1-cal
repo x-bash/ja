@@ -16,7 +16,7 @@ END{
 
 
 data_class | ja '{ print g(".name") }'      # data_class | jq '.name'
-data_class | ja 'k()=="score"{ s+=g(".score"); c++; } END{ print s/c; }'
-data_class | ja 'km("score"){ s+=g(".score"); c++; } END{ print s/c; }'
-data_class | ja 'keq("score"){ s+=g(".score"); c++; } END{ print s/c; }'
+data_class | ja 'k()=="score"{ s+=g("score"); c++; } END{ print s/c; }'
+data_class | ja 'km("score"){ s+=g("score"); c++; } END{ print s/c; }'
+data_class | ja 'keq("score"){ s+=g("score"); c++; } END{ print s/c; }'
 
