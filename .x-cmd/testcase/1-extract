@@ -54,3 +54,11 @@ jawk 'v()=="}" && kpopt(1, "*") && g("age") == 33 { print g( "name" ) }'
 
 # jawk kp 'BEGIN{ kpopt(1, "*", "name") }'
 
+
+# jq '.[] | if .classA | .name'
+jawk 'q(".classA"){ print g( "name" ) }'
+
+# jq '.name'
+jawk 'k()=="name"{ print v(); }'
+jawk '{ print g(".name"); }'
+
