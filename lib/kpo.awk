@@ -123,8 +123,8 @@ function jiter( item,  _res ) {
     {
         if ( JITER_LAST_KP != "" ) {
             _res = JITER_FA_KEYPATH S JITER_LAST_KP
-            JITER_LAST_KP = ""
             key = JITER_LAST_KP
+            JITER_LAST_KP = ""
             return _res
         }
         JITER_CURLEN = JITER_CURLEN + 1
