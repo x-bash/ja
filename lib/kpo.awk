@@ -11,7 +11,8 @@ BEGIN {
 
 
 # Section: jiter
-function jiter_init( keypath_prefix ) {
+# function jiter_init( keypath_prefix ) {
+BEGIN {
     JITER_FA_KEYPATH    = keypath_prefix
     JITER_STATE         = T_ROOT
     JITER_LAST_KP       = ""

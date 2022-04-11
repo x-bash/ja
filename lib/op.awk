@@ -6,8 +6,8 @@ function kpopt(){
 # EndSection
 
 # Section: utils
-function k(){ return _k == "" ? _k = unquote( key ): _k; }
-function v(){ return _v == "" ? _v = unquote( $0 ): _v; }
+function k(){ return _k == "" ? _k = uq( key ): _k; }
+function v(){ return _v == "" ? _v = uq( $0 ): _v; }
 
 function kpgen( v1, v2, v3, v4, v5, v6, v7, v8, v9, _ret ){
     _ret = ""

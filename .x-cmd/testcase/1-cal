@@ -30,9 +30,9 @@ END{
 
 data_class | ja '{ print g(".name") }'      # data_class | jq '.name'
 
-data_class | ja 'k()=="score"{ s+=v0; c++; } END{ print s/c; }'
-data_class | ja 'km("score"){ s+=v0; c++; } END{ print s/c; }'
-data_class | ja 'krm("score"){ s+=v0; c++; } END{ print s/c; }'
+data_class | ja 'k()=="score"{ s+=v(); c++; } END{ print s/c; }'
+data_class | ja 'km("score"){ s+=v(); c++; } END{ print s/c; }'
+data_class | ja 'krm("score"){ s+=v(); c++; } END{ print s/c; }'
 
 
 eval "$(data_class | ja 'K~/sco/{ s+=V; c++; } END{ e("avg", s/c); }')"    # printf "%s" "$avg"
@@ -40,10 +40,10 @@ eval "$(data_class | ja 'K~/sco/{ s+=V; c++; } END{ e("avg", s/c); }')"    # pri
 eval "$(data_class | ja 'K~/sco/{ s+=V; c++; } END{ e_(s/c); }')"    # printf "%s" "$_"
 eval "$(data_class | ja 'k("score"){ s+=V; c++; } END{ e_(s/c); }')"    # printf "%s" "$_"
 
-eval "$(data_class | ja '_[2]~/sco/{ s+=v0; c++; } END{ e_(s/c); }')"    # printf "%s" "$_"
+eval "$(data_class | ja '_[2]~/sco/{ s+=v(); c++; } END{ e_(s/c); }')"    # printf "%s" "$_"
 
-avg="$(data_class | ja '_[2]~/sco/{ s+=v0; c++; } END{ print(s/c); }')"    # printf "%s" "$_"
-
+avg="$(data_class | ja '_[2]~/sco/{ s+=v(); c++; } END{ print(s/c); }')"    # printf "%s" "$_"
+echo "arg: $avg"
 data_class | jq -r .name
 data_class | ja 'k()=="name"{ print v(); }'
 data_class | ja '{ pr("name") }'
