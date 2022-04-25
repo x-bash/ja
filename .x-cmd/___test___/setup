@@ -3,6 +3,7 @@
 function data_class(){
     x jo '{
         classA: [
+            aaa
             {
                 name: el,
                 age: 12,
@@ -13,7 +14,6 @@ function data_class(){
                 age: 13,
                 score: 100
             },
-            aaa
             bbb
         ],
         classB: [
@@ -38,4 +38,4 @@ function data_class(){
     }'
 }
 
-alias ja=___x_cmd_jawk
+alias ja=___x_cmd_ja
