@@ -1,5 +1,5 @@
 
 ___x_cmd_ja_tokenized(){
     command awk -f "$___X_CMD_ROOT_MOD/awk/lib/json.awk" \
-                -f "$___X_CMD_ROOT_MOD/ja/lib/tokenized_main.awk"
+                -f "$___X_CMD_ROOT_MOD/ja/lib/awk/tokenized_main.awk"
 }
