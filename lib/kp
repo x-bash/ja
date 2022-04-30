@@ -23,3 +23,15 @@ $*
 
 }
 
+___x_cmd_ja_kpf(){
+    local IFS=' '
+    ___x_cmd_ja_tokenized | \
+    command awk -f "$___X_CMD_ROOT_MOD/awk/lib/default.awk" \
+                -f "$___X_CMD_ROOT_MOD/awk/lib/json.awk" \
+                -f "$___X_CMD_ROOT_MOD/awk/lib/jiter.awk" \
+                -f "$___X_CMD_ROOT_MOD/ja/lib/awk/kp.awk" | \
+    command awk -f "$___X_CMD_ROOT_MOD/ja/lib/awk/kp_main.awk" -f "$1"
+
+}
+
+
