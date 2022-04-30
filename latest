@@ -12,7 +12,7 @@ ___x_cmd_ja(){
         t|tokenized)        shift; ___x_cmd_ja_tokenized "$@" ;;
         kp)                 shift; ___x_cmd_ja_kp "$@" ;;      # just extract keypath, provide jstr
         kpo)                shift; ___x_cmd_ja_kpo "$@" ;;      # extract keypath, but also provide utils, provide jstr
-        _x_cmd_advise_json) printf "{}" ; return 126 ;;
+        _x_cmd_advise_json) cat "$___X_CMD_ROOT_MOD/ja/lib/ja.advise.json" ; return 126 ;;
         *)                  ___x_cmd_ja_kpo "$@" ;;
     esac
 }
