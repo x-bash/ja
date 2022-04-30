@@ -20,7 +20,7 @@ ___x_cmd_ja(){
         kpof)               shift; ___x_cmd_ja_kpof "$@" ;;          # extract keypath, but also provide utils, provide jstr
 
 
-        -h|-H|--help)       cat "$___X_CMD_ROOT_MOD/ja/lib/ja.help.txt"
+        -h|-H|--help)       cat "$___X_CMD_ROOT_MOD/ja/lib/ja.help.txt" >&2
                             return 0 ;;
         "")                 ja:error "ja need at least one argument" >&2;
                             return 1 ;;
