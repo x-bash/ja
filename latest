@@ -9,8 +9,6 @@ x log init ja
 
 ___x_cmd_ja(){
     case "$1" in
-
-
         t|tokenized)        shift; ___x_cmd_ja_tokenized "$@" ;;
 
         kp)                 shift; ___x_cmd_ja_kp "$@" ;;           # just extract keypath, provide jstr
