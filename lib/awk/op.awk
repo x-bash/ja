@@ -11,6 +11,14 @@ function v(){
     return _v = juq( $0 )
 }
 
+function va( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){ # absolute
+    return _[ kp( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) ]
+}
+
+function vr( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){ # relative
+    return _[ KP S kp( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) ]
+}
+
 function juq(str){
     if (str !~ /^"/) { # "
         return str
@@ -27,24 +35,7 @@ function jqu(str){
     return "\"" str "\""
 }
 
-function ga( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){ # absolute
-    return _[ kpgen( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) ]
-}
-
-function gr( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){ # relative
-    return _[ KP S kpgen( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) ]
-}
-
-function kpmatch( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
-    return match(KP, kpgen( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) "$" )
-}
-
-function kpglob( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
-    return match( KP, glob(k1, k2, k3, k4, k5, k6, k7, k8, k9) "$" )
-}
-
-
-function kpgen( k1, k2, k3, k4, k5, k6, k7, k8, k9, _ret ){
+function kp( k1, k2, k3, k4, k5, k6, k7, k8, k9,        _ret ){
     _ret = ""
     if ( k1 == "" ) return _ret
     _ret = _ret S jqu( k1 )
@@ -65,6 +56,14 @@ function kpgen( k1, k2, k3, k4, k5, k6, k7, k8, k9, _ret ){
     if ( k9 == "" ) return _ret
     _ret = _ret S jqu( k9 )
     return _ret
+}
+
+function kpmatch( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
+    return match(KP, kp( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) "$" )
+}
+
+function kpglob( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
+    return match( KP, glob(k1, k2, k3, k4, k5, k6, k7, k8, k9) "$" )
 }
 
 function glob_item( key ){
