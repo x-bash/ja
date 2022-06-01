@@ -42,7 +42,7 @@ ja 'k()=="name"{ print v(); }'
 
 ja 'kpglob("class*", "name"){ print v(); }'
 
-ja '_[l]=="name" && _[l-1] ~ /^class/{ print v(); }'
+ja 'o[l]=="name" && o[l-1] ~ /^class/{ print v(); }'
 
 # jq 'if .age==33 then .name done'
 # Print all name when age == 33

@@ -5,8 +5,8 @@
         _v_reset = 0
     } else {
         KP = $0
-        D = split(KP, _, "\001")
-        K = _[ D ]
+        D = split(KP, o, "\001")
+        K = o[ D ]
         _k_reset = 0
         next
     }
