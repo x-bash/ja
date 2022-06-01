@@ -11,9 +11,7 @@ function v(){
 function o( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){   return O[ kp( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) ];       }
 function r( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){   return O[ KP S kp( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) ];  }
 function c( current_level, value ) {
-    if ( current_level != C )   return 0
-    if ( (value != "") && (value != o[C]) ) return 0
-    return 1
+    return ( ( current_level != C ) || ( (value != "") && (value != o[C]) ) ) ? 0 : 1
 }
 
 function juq(str){
