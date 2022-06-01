@@ -7,7 +7,7 @@ function kpopt(){
 
 # Section: utils
 
-function k_reset(){ _k_reset = 0; }
+# function k_reset(){ _k_reset = 0; }
 function k(){
     if (_k_reset == 1) return _k
     _k_reset = 1
@@ -24,7 +24,7 @@ function k(){
 #     return k()==val
 # }
 
-function v_reset(){ _v_reset = 0 }
+# function v_reset(){ _v_reset = 0 }
 function v(){
     if (_v_reset == 1) return _v
     _v_reset = 1

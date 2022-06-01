@@ -76,6 +76,6 @@ function jiter( item,  _res ) {
     K=key
     V=$0
 
-    k_reset()
-    v_reset()
+    _k_reset = 0; # k_reset()
+    _v_reset = 0; # v_reset()
 }
