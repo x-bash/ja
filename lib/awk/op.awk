@@ -21,6 +21,12 @@ function juq(str){
     if (str !~ /^"/) { # "
         return str
     }
+
+    gsub("\\n", "\n", str)
+    gsub("\\t", "\t", str)
+    gsub("\\v", "\v", str)
+    gsub("\\b", "\b", str)
+
     gsub(/\\\\/, "\001\001", str)
     gsub(/\\"/, /"/, str)
     gsub("\001\001", "\\\\", str)
@@ -28,6 +34,10 @@ function juq(str){
 }
 
 function jqu(str){
+    gsub("\n", "\\n", str)
+    gsub("\t", "\\t", str)
+    gsub("\v", "\\v", str)
+    gsub("\b", "\\b", str)
     gsub(/\\/, "\\\\", str)
     gsub(/"/, "\\\"", str)
     return "\"" str "\""
