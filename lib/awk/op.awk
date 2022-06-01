@@ -31,39 +31,39 @@ function v(){
     return _v = juq( $0 )
 }
 
-function kpgen( v1, v2, v3, v4, v5, v6, v7, v8, v9, _ret ){
+function kpgen( k1, k2, k3, k4, k5, k6, k7, k8, k9, _ret ){
     _ret = ""
-    if ( v1 == "" ) return _ret
-    _ret = _ret S jqu( v1 )
-    if ( v2 == "" ) return _ret
-    _ret = _ret S jqu( v2 )
-    if ( v3 == "" ) return _ret
-    _ret = _ret S jqu( v3 )
-    if ( v4 == "" ) return _ret
-    _ret = _ret S jqu( v4 )
-    if ( v5 == "" ) return _ret
-    _ret = _ret S jqu( v5 )
-    if ( v6 == "" ) return _ret
-    _ret = _ret S jqu( v6 )
-    if ( v7 == "" ) return _ret
-    _ret = _ret S jqu( v7 )
-    if ( v8 == "" ) return _ret
-    _ret = _ret S jqu( v8 )
-    if ( v9 == "" ) return _ret
-    _ret = _ret S jqu( v9 )
+    if ( k1 == "" ) return _ret
+    _ret = _ret S jqu( k1 )
+    if ( k2 == "" ) return _ret
+    _ret = _ret S jqu( k2 )
+    if ( k3 == "" ) return _ret
+    _ret = _ret S jqu( k3 )
+    if ( k4 == "" ) return _ret
+    _ret = _ret S jqu( k4 )
+    if ( k5 == "" ) return _ret
+    _ret = _ret S jqu( k5 )
+    if ( k6 == "" ) return _ret
+    _ret = _ret S jqu( k6 )
+    if ( k7 == "" ) return _ret
+    _ret = _ret S jqu( k7 )
+    if ( k8 == "" ) return _ret
+    _ret = _ret S jqu( k8 )
+    if ( k9 == "" ) return _ret
+    _ret = _ret S jqu( k9 )
     return _ret
 }
 
-function get( v1, v2, v3, v4, v5, v6, v7, v8, v9 ){
-    return _[ kpgen( v1, v2, v3, v4, v5, v6, v7, v8, v9 ) ]
+function get( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
+    return _[ kpgen( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) ]
 }
 
-function g( v1, v2, v3, v4, v5, v6, v7, v8, v9 ){
-    return _[ KP S kpgen( v1, v2, v3, v4, v5, v6, v7, v8, v9 ) ]
+function g( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
+    return _[ KP S kpgen( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) ]
 }
 
-function kpmatch( v1, v2, v3, v4, v5, v6, v7, v8, v9 ){
-    return match(KP, kpgen( v1, v2, v3, v4, v5, v6, v7, v8, v9 ) "$" )
+function kpmatch( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
+    return match(KP, kpgen( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) "$" )
 }
 
 function glob_item( key ){
@@ -71,31 +71,31 @@ function glob_item( key ){
     return key
 }
 
-function glob( v1, v2, v3, v4, v5, v6, v7, v8, v9 ){
+function glob( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
     _ret = ""
-    if ( v1 == "" ) return _ret
-    _ret = _ret S glob_item( v1 )
-    if ( v2 == "" ) return _ret
-    _ret = _ret S glob_item( v2 )
-    if ( v3 == "" ) return _ret
-    _ret = _ret S glob_item( v3 )
-    if ( v4 == "" ) return _ret
-    _ret = _ret S glob_item( v4 )
-    if ( v5 == "" ) return _ret
-    _ret = _ret S glob_item( v5 )
-    if ( v6 == "" ) return _ret
-    _ret = _ret S glob_item( v6 )
-    if ( v7 == "" ) return _ret
-    _ret = _ret S glob_item( v7 )
-    if ( v8 == "" ) return _ret
-    _ret = _ret S glob_item( v8 )
-    if ( v9 == "" ) return _ret
-    _ret = _ret S glob_item( v9 )
+    if ( k1 == "" ) return _ret
+    _ret = _ret S glob_item( k1 )
+    if ( k2 == "" ) return _ret
+    _ret = _ret S glob_item( k2 )
+    if ( k3 == "" ) return _ret
+    _ret = _ret S glob_item( k3 )
+    if ( k4 == "" ) return _ret
+    _ret = _ret S glob_item( k4 )
+    if ( k5 == "" ) return _ret
+    _ret = _ret S glob_item( k5 )
+    if ( k6 == "" ) return _ret
+    _ret = _ret S glob_item( k6 )
+    if ( k7 == "" ) return _ret
+    _ret = _ret S glob_item( k7 )
+    if ( k8 == "" ) return _ret
+    _ret = _ret S glob_item( k8 )
+    if ( k9 == "" ) return _ret
+    _ret = _ret S glob_item( k9 )
     return _ret
 }
 
-function kpglob( v1, v2, v3, v4, v5, v6, v7, v8, v9 ){
-    return match( kp, glob(v1, v2, v3, v4, v5, v6, v7, v8, v9) "$" )
+function kpglob( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
+    return match( kp, glob(k1, k2, k3, k4, k5, k6, k7, k8, k9) "$" )
 }
 
 # EndSection
