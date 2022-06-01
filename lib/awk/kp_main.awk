@@ -5,6 +5,6 @@
         kp = $0
         kal = split(kp, ka, "\001")
         k = ka[kal]
-        next()
+        next
     }
 }
