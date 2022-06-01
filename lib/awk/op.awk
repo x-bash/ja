@@ -14,21 +14,21 @@ function c( current_level, value ) {
     return ( ( current_level != C ) || ( (value != "") && (value != o[C]) ) ) ? 0 : 1
 }
 
-function juq(str){
-    if (str !~ /^"/) return str     #"
-    gsub("\\n", "\n", str); gsub("\\r", "\r", str)
-    gsub("\\t", "\t", str); gsub("\\v", "\v", str)
-    gsub("\\b", "\b", str)
-    gsub(/\\\\/, "\001\001", str);      gsub(/\\"/, /"/, str);      gsub("\001\001", "\\\\", str)
-    return substr(str, 2, length(str)-2)
+function juq(s){
+    if (s !~ /^"/) return s     #"
+    gsub("\\n", "\n", s);             gsub("\\r", "\r", s)
+    gsub("\\t", "\t", s);             gsub("\\v", "\v", s)
+    gsub("\\b", "\b", s)
+    gsub(/\\\\/, "\001\001", s);      gsub(/\\"/, /"/, s);      gsub("\001\001", "\\\\", s)
+    return substr(s, 2, length(s)-2)
 }
 
-function jqu(str){
-    gsub("\n", "\\n", str); gsub("\r", "\\r", str)
-    gsub("\t", "\\t", str); gsub("\v", "\\v", str)
-    gsub("\b", "\\b", str)
-    gsub(/\\/, "\\\\", str);    gsub(/"/, "\\\"", str)
-    return "\"" str "\""
+function jqu(s){
+    gsub("\n", "\\n", s);             gsub("\r", "\\r", s)
+    gsub("\t", "\\t", s);             gsub("\v", "\\v", s)
+    gsub("\b", "\\b", s)
+    gsub(/\\/, "\\\\", s);            gsub(/"/, "\\\"", s)
+    return "\"" s "\""
 }
 
 function kp( k1, k2, k3, k4, k5, k6, k7, k8, k9,        _ret ){
