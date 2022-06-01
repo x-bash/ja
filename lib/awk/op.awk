@@ -54,16 +54,22 @@ function kpgen( k1, k2, k3, k4, k5, k6, k7, k8, k9, _ret ){
     return _ret
 }
 
-function get( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
+# absolute
+function ga( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
     return _[ kpgen( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) ]
 }
 
-function g( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
+# relative
+function gr( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
     return _[ KP S kpgen( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) ]
 }
 
 function kpmatch( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
     return match(KP, kpgen( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) "$" )
+}
+
+function kpglob( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
+    return match( KP, glob(k1, k2, k3, k4, k5, k6, k7, k8, k9) "$" )
 }
 
 function glob_item( key ){
@@ -94,9 +100,7 @@ function glob( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
     return _ret
 }
 
-function kpglob( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
-    return match( kp, glob(k1, k2, k3, k4, k5, k6, k7, k8, k9) "$" )
-}
+
 
 # EndSection
 
