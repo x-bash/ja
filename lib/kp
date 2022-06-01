@@ -13,6 +13,33 @@ $*
 
 }
 
+___x_cmd_ja_kp_main(){
+    local OPT
+    local filemode=0
+    local code
+    while getopts 'f' OPT; do
+        case "$OPT" in
+            f)
+                filemode=1;
+                code="$code -f \"\$$OPTIND\"" ;;
+            ?)
+                printf "%s\n" "Fail to parse in $OPTIND: $*"
+                ;;
+        esac
+    done
+
+    local IFS=' '
+    ___x_cmd_ja_kp___prehandle | if [ "$filemode" = 1 ]; then
+        eval command awk -f "$___X_CMD_ROOT_MOD/ja/lib/awk/kp_main.awk" "$code"
+    else
+        command awk "$(cat "$___X_CMD_ROOT_MOD/ja/lib/awk/kp_main.awk")""
+$*
+"
+    fi
+
+}
+
+
 ___x_cmd_ja_kp___prehandle(){
     local IFS=' '
     ___x_cmd_ja_tokenized | \
@@ -21,3 +48,4 @@ ___x_cmd_ja_kp___prehandle(){
                 -f "$___X_CMD_ROOT_MOD/awk/lib/jiter.awk" \
                 -f "$___X_CMD_ROOT_MOD/ja/lib/awk/kp.awk"
 }
+
