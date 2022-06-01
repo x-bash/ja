@@ -8,7 +8,7 @@ function kpopt(){
 # Section: utils
 
 function k_reset(){ _k_reset = 0; }
-function k(val){
+function k(){
     if (_k_reset == 1) return _k
     _k_reset = 1
     return _k = juq( key )
