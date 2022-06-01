@@ -35,12 +35,12 @@ data_class | ja 'km("score"){ s+=v(); c++; } END{ print s/c; }'
 data_class | ja 'krm("score"){ s+=v(); c++; } END{ print s/c; }'
 
 
-eval "$(data_class | ja 'K~/sco/{ s+=V; c++; } END{ e("avg", s/c); }')"    # printf "%s" "$avg"
+eval "$(data_class | ja 'K~/sco/{ s+=V; c++; } END{ print "avg=" s/c; }')"    # printf "%s" "$avg"
 
-eval "$(data_class | ja 'K~/sco/{ s+=V; c++; } END{ e_(s/c); }')"    # printf "%s" "$_"
-eval "$(data_class | ja 'k()=="score"{ s+=V; c++; } END{ e_(s/c); }')"    # printf "%s" "$_"
+eval "$(data_class | ja 'K~/sco/{ s+=V; c++; } END{ print "_=" (s/c); }')"    # printf "%s" "$_"
+eval "$(data_class | ja 'k()=="score"{ s+=V; c++; } END{ print "_=" (s/c); }')"    # printf "%s" "$_"
 
-eval "$(data_class | ja '_[2]~/sco/{ s+=v(); c++; } END{ e_(s/c); }')"    # printf "%s" "$_"
+eval "$(data_class | ja '_[2]~/sco/{ s+=v(); c++; } END{ print "_=" (s/c); }')"    # printf "%s" "$_"
 
 avg="$(data_class | ja '_[2]~/sco/{ s+=v(); c++; } END{ print(s/c); }')"    # printf "%s" "$_"
 echo "arg: $avg"

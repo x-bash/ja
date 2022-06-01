@@ -1,30 +1,10 @@
 
-# Section: opt
-function kpopt(){
-    return
-}
-# EndSection
-
-# Section: utils
-
-# function k_reset(){ _k_reset = 0; }
 function k(){
     if (_k_reset == 1) return _k
     _k_reset = 1
     return _k = juq( key )
 }
 
-# function k(val){
-#     if (val == ""){
-#         if (_k_reset == 1) return _k
-#         _k_reset = 1
-#         return _k = juq( key )
-#     }
-
-#     return k()==val
-# }
-
-# function v_reset(){ _v_reset = 0 }
 function v(){
     if (_v_reset == 1) return _v
     _v_reset = 1
@@ -54,13 +34,11 @@ function kpgen( k1, k2, k3, k4, k5, k6, k7, k8, k9, _ret ){
     return _ret
 }
 
-# absolute
-function ga( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
+function ga( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){ # absolute
     return _[ kpgen( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) ]
 }
 
-# relative
-function gr( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
+function gr( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){ # relative
     return _[ KP S kpgen( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) ]
 }
 
@@ -73,8 +51,7 @@ function kpglob( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
 }
 
 function glob_item( key ){
-    gsub(/\*/, "[^\001]+", key)
-    return key
+    gsub(/\*/, "[^\001]+", key);    return key
 }
 
 function glob( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
@@ -100,33 +77,6 @@ function glob( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
     return _ret
 }
 
-
-
-# EndSection
-
-
-# Section: unqu and jqu
-function e(var, val){   printf("%s=%s", var, val); }
-function e_(val){ e("_", val); }
-function qe(var, val){   printf("%s=%s", var, jqu(val)); }
-function qe_(val){ eq("_", val); }
-
-# function uq(str){
-#     if (str !~ /^"/) { # "
-#         return str
-#     }
-#     gsub(/\\\\/, "\001\001", str)
-#     gsub(/\\"/, /"/, str)
-#     gsub("\001\001", "\\\\", str)
-#     return substr(str, 2, length(str)-2)
-# }
-
-# function qu(str){
-#     gsub(/\\/, "\\\\", str)
-#     gsub(/"/, "\\\"", str)
-#     return "\"" str "\""
-# }
-
 function juq(str){
     if (str !~ /^"/) { # "
         return str
@@ -142,4 +92,3 @@ function jqu(str){
     gsub(/"/, "\\\"", str)
     return "\"" str "\""
 }
-# EndSection
