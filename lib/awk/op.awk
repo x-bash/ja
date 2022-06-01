@@ -6,16 +6,26 @@ function kpopt(){
 # EndSection
 
 # Section: utils
+
+function k_reset(){ _k_reset = 0; }
 function k(val){
     if (val == ""){
-        return _k == "" ? _k = uq( key ): _k;
+        if (_k_reset == 1) return _k
+        _k_reset = 1
+        return _k = juq( key )
     }
     else{
         return k()==val
     }
 }
 # function k(){ return _k == "" ? _k = uq( key ): _k; }
-function v(){ return _v == "" ? _v = uq( $0 ): _v; }
+
+function v_reset(){ _v_reset = 0 }
+function v(){
+    if (_v_reset == 1) return _v
+    _v_reset = 1
+    return _v = juq( $0 )
+}
 
 function kpgen( v1, v2, v3, v4, v5, v6, v7, v8, v9, _ret ){
     _ret = ""

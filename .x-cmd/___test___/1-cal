@@ -1,8 +1,8 @@
 data_class | ja '
-l==2{ clist[ ++clistl ] = k() }
+D==2{ clist[ ++clistl ] = k() }
 k()=="score"{
-    total[ _[l] ] += V
-    count[ _[l] ] ++
+    total[ _[D] ] += V
+    count[ _[D] ] ++
 }
 
 END{
@@ -16,8 +16,8 @@ END{
 
 data_class | ja '
 k()=="score"{
-    total[ _[l] ] += V
-    count[ _[l] ] ++
+    total[ _[D] ] += V
+    count[ _[D] ] ++
 }
 
 END{
