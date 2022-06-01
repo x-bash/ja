@@ -86,7 +86,7 @@ function _p_dict(O, kp,     _klist, l, i, _key){
 }
 
 function _p_list(O, kp,     l, i, _ret){
-    print "[";  l = O[ kp T_LEN ]
+    print "[";  l = O[ kp L ]
     for (i=1; i<=l; i++){
         if (i!=1) print ",";
         _p_value( O, kp S "\""  i "\"" )
