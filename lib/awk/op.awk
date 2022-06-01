@@ -14,11 +14,9 @@ function k(val){
         _k_reset = 1
         return _k = juq( key )
     }
-    else{
-        return k()==val
-    }
+
+    return k()==val
 }
-# function k(){ return _k == "" ? _k = uq( key ): _k; }
 
 function v_reset(){ _v_reset = 0 }
 function v(){
