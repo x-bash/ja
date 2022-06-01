@@ -9,11 +9,11 @@ function v(){
     _v_reset = 1;       return _v = juq( $0 )
 }
 
-function va( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){ # absolute
+function va( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){  # absolute
     return _[ kp( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) ]
 }
 
-function vr( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){ # relative
+function vr( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){  # relative
     return _[ KP S kp( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) ]
 }
 
