@@ -12,11 +12,7 @@ ___x_cmd_ja(){
         t|tokenized)        shift; ___x_cmd_ja_tokenized "$@" ;;
 
         kp)                 shift; ___x_cmd_ja_kp "$@" ;;           # just extract keypath, provide jstr
-        kpf)                shift; ___x_cmd_ja_kpf "$@" ;;           # just extract keypath, provide jstr
-
         kpo)                shift; ___x_cmd_ja_kpo "$@" ;;          # extract keypath, but also provide utils, provide jstr
-        kpof)               shift; ___x_cmd_ja_kpof "$@" ;;          # extract keypath, but also provide utils, provide jstr
-
 
         -h|-H|--help)       cat "$___X_CMD_ROOT_MOD/ja/lib/ja.help.txt" >&2
                             return 0 ;;
