@@ -1,14 +1,12 @@
 
 function k(){
-    if (_k_reset == 1) return _k
-    _k_reset = 1
-    return _k = juq( key )
+    if (_k_reset == 1)  return _k
+    _k_reset = 1;       return _k = juq( key )
 }
 
 function v(){
-    if (_v_reset == 1) return _v
-    _v_reset = 1
-    return _v = juq( $0 )
+    if (_v_reset == 1)  return _v
+    _v_reset = 1;       return _v = juq( $0 )
 }
 
 function va( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){ # absolute
