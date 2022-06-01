@@ -13,18 +13,16 @@ function r( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){   return O[ KP S kp( k1, k2, k
 
 function juq(str){
     if (str !~ /^"/) return str     #"
-    gsub("\\n", "\n", str)
-    gsub("\\t", "\t", str)
-    gsub("\\v", "\v", str)
+    gsub("\\n", "\n", str); gsub("\\r", "\r", str)
+    gsub("\\t", "\t", str); gsub("\\v", "\v", str)
     gsub("\\b", "\b", str)
     gsub(/\\\\/, "\001\001", str);      gsub(/\\"/, /"/, str);      gsub("\001\001", "\\\\", str)
     return substr(str, 2, length(str)-2)
 }
 
 function jqu(str){
-    gsub("\n", "\\n", str)
-    gsub("\t", "\\t", str)
-    gsub("\v", "\\v", str)
+    gsub("\n", "\\n", str); gsub("\r", "\\r", str)
+    gsub("\t", "\\t", str); gsub("\v", "\\v", str)
     gsub("\b", "\\b", str)
     gsub(/\\/, "\\\\", str);    gsub(/"/, "\\\"", str)
     return "\"" str "\""
