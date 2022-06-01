@@ -59,11 +59,11 @@ function get( v1, v2, v3, v4, v5, v6, v7, v8, v9 ){
 }
 
 function g( v1, v2, v3, v4, v5, v6, v7, v8, v9 ){
-    return _[ kp S kpgen( v1, v2, v3, v4, v5, v6, v7, v8, v9 ) ]
+    return _[ KP S kpgen( v1, v2, v3, v4, v5, v6, v7, v8, v9 ) ]
 }
 
 function kpmatch( v1, v2, v3, v4, v5, v6, v7, v8, v9 ){
-    return match(kp, kpgen( v1, v2, v3, v4, v5, v6, v7, v8, v9 ) "$" )
+    return match(KP, kpgen( v1, v2, v3, v4, v5, v6, v7, v8, v9 ) "$" )
 }
 
 function glob_item( key ){
