@@ -1,8 +1,8 @@
 data_class | ja '
 D==2{ clist[ ++clistl ] = k() }
 k()=="score"{
-    total[ o[D] ] += V
-    count[ o[D] ] ++
+    total[ O[D] ] += V
+    count[ O[D] ] ++
 }
 
 END{
@@ -16,8 +16,8 @@ END{
 
 data_class | ja '
 k()=="score"{
-    total[ o[D] ] += V
-    count[ o[D] ] ++
+    total[ O[D] ] += V
+    count[ O[D] ] ++
 }
 
 END{
@@ -37,12 +37,12 @@ data_class | ja 'krm("score"){ s+=v(); c++; } END{ print s/c; }'
 
 eval "$(data_class | ja 'K~/sco/{ s+=V; c++; } END{ print "avg=" s/c; }')"    # printf "%s" "$avg"
 
-eval "$(data_class | ja 'K~/sco/{ s+=V; c++; } END{ print "o=" (s/c); }')"    # printf "%s" "$o"
-eval "$(data_class | ja 'k()=="score"{ s+=V; c++; } END{ print "o=" (s/c); }')"    # printf "%s" "$o"
+eval "$(data_class | ja 'K~/sco/{ s+=V; c++; } END{ print "O=" (s/c); }')"    # printf "%s" "$O"
+eval "$(data_class | ja 'k()=="score"{ s+=V; c++; } END{ print "O=" (s/c); }')"    # printf "%s" "$O"
 
-eval "$(data_class | ja 'o[2]~/sco/{ s+=v(); c++; } END{ print "o=" (s/c); }')"    # printf "%s" "$o"
+eval "$(data_class | ja 'O[2]~/sco/{ s+=v(); c++; } END{ print "O=" (s/c); }')"    # printf "%s" "$O"
 
-avg="$(data_class | ja 'o[2]~/sco/{ s+=v(); c++; } END{ print(s/c); }')"    # printf "%s" "$o"
+avg="$(data_class | ja 'O[2]~/sco/{ s+=v(); c++; } END{ print(s/c); }')"    # printf "%s" "$O"
 echo "arg: $avg"
 data_class | jq -r .name
 data_class | ja 'k()=="name"{ print v(); }'

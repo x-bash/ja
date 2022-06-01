@@ -12,7 +12,7 @@ q() -- 对数据加quote和转义
 uq() -- q的逆运算
 
 e(var, val) -- 生成用来赋值的代码, 变量名为var
-e_(var, val) -- e(o, val)
+e_(var, val) -- e(O, val)
 
 keq(p1, p2) -- 用来匹配keypath
 km(p1, p2, p3) -- 用正则表达式匹配keypath

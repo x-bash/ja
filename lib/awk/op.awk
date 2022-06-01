@@ -8,8 +8,8 @@ function v(){
     _v_reset = 1;       return _v = juq( $0 )
 }
 
-function O( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){   return o[ kp( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) ];       }
-function g( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){   return o[ KP S kp( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) ];  }
+function o( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){   return O[ kp( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) ];       }
+function r( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){   return O[ KP S kp( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) ];  }
 
 function juq(str){
     if (str !~ /^"/) return str     #"
@@ -64,34 +64,34 @@ function ___kp_glob_pattern( k1, k2, k3, k4, k5, k6, k7, k8, k9,    _ret ){
 }
 
 function p(kp,   i, l){
-    l = o[ kp L ]
+    l = O[ kp L ]
     for (i=2; i<=l; ++i) {
         if (i!=1)   print "\n"
-        _p_value( o,  kp S "\"" i "\"")
+        _p_value( O,  kp S "\"" i "\"")
     }
 }
 
-function _p_value(o, kp,     _t, _klist, i, _ret){
-    _t = o[ kp ]
-    if (_t == T_DICT)           _p_dict(o, kp)
-    else if (_t == T_LIST)      _p_list(o, kp)
+function _p_value(O, kp,     _t, _klist, i, _ret){
+    _t = O[ kp ]
+    if (_t == T_DICT)           _p_dict(O, kp)
+    else if (_t == T_LIST)      _p_list(O, kp)
     else                        print _t
 }
 
-function _p_dict(o, kp,     _klist, l, i, _key){
-    print "{";  l = o[ kp L ]
+function _p_dict(O, kp,     _klist, l, i, _key){
+    print "{";  l = O[ kp L ]
     for (i=1; i<=l; i++){
         if (i!=1) print ",";
-        _key = o[ kp S "\""  i "\"" ]; print _key;  print ":"; print o[ kp S _key ]
+        _key = O[ kp S "\""  i "\"" ]; print _key;  print ":"; print O[ kp S _key ]
     }
     print "}"
 }
 
-function _p_list(o, kp,     l, i, _ret){
-    print "[";  l = o[ kp T_LEN ]
+function _p_list(O, kp,     l, i, _ret){
+    print "[";  l = O[ kp T_LEN ]
     for (i=1; i<=l; i++){
         if (i!=1) print ",";
-        _p_value( o, kp S "\""  i "\"" )
+        _p_value( O, kp S "\""  i "\"" )
     }
     print "]"
 }

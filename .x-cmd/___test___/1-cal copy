@@ -1,8 +1,8 @@
 data_class | ja '
 l==2{ clist[ ++clistl ] = k() }
 k()=="score"{
-    total[ o[l] ] += V
-    count[ o[l] ] ++
+    total[ O[l] ] += V
+    count[ O[l] ] ++
 }
 
 END{
@@ -16,9 +16,9 @@ END{
 
 data_class | ja '
 k()=="score"{
-    total[ o[l] ] += V
-    count[ o[l] ] ++
-    print o[l]
+    total[ O[l] ] += V
+    count[ O[l] ] ++
+    print O[l]
 }
 
 END{
@@ -38,12 +38,12 @@ END{
 
 # eval "$(data_class | ja 'K~/sco/{ s+=V; c++; } END{ e("avg", s/c); }')"    # printf "%s" "$avg"
 
-# eval "$(data_class | ja 'K~/sco/{ s+=V; c++; } END{ e_(s/c); }')"    # printf "%s" "$o"
-# eval "$(data_class | ja 'k("score"){ s+=V; c++; } END{ e_(s/c); }')"    # printf "%s" "$o"
+# eval "$(data_class | ja 'K~/sco/{ s+=V; c++; } END{ e_(s/c); }')"    # printf "%s" "$O"
+# eval "$(data_class | ja 'k("score"){ s+=V; c++; } END{ e_(s/c); }')"    # printf "%s" "$O"
 
-# eval "$(data_class | ja 'o[2]~/sco/{ s+=v(); c++; } END{ e_(s/c); }')"    # printf "%s" "$o"
+# eval "$(data_class | ja 'O[2]~/sco/{ s+=v(); c++; } END{ e_(s/c); }')"    # printf "%s" "$O"
 
-# avg="$(data_class | ja 'o[2]~/sco/{ s+=v(); c++; } END{ print(s/c); }')"    # printf "%s" "$o"
+# avg="$(data_class | ja 'O[2]~/sco/{ s+=v(); c++; } END{ print(s/c); }')"    # printf "%s" "$O"
 # echo "arg: $avg"
 # data_class | jq -r .name
 data_class | ja 'k()=="name"{ print v(); }'
@@ -51,6 +51,6 @@ data_class | ja 'k()=="score"{ s+=v(); c++; } END{ print s/c; }'
 eval "$(data_class | ja 'K~/sco/{ s+=V; c++; } END{ e("avg", s/c); }')"    # printf "%s" "$avg"
 eval "$(data_class | ja 'K~/sco/{ s+=V; c++; } END{ e_(s/c); }')"
 
-eval "$(data_class | ja 'o[3]~/sco/{ s+=v(); c++; } END{ e_(s/c); }')"    # printf "%s" "$o"
- avg="$(data_class | ja 'o[3]~/sco/{ s+=v(); c++; } END{ print(s/c); }')"    # printf "%s" "$o"
+eval "$(data_class | ja 'O[3]~/sco/{ s+=v(); c++; } END{ e_(s/c); }')"    # printf "%s" "$O"
+ avg="$(data_class | ja 'O[3]~/sco/{ s+=v(); c++; } END{ print(s/c); }')"    # printf "%s" "$O"
  eval "$(data_class | ja 'k("score"){ s+=V; c++; } END{ e_(s/c); }')"
