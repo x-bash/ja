@@ -18,15 +18,11 @@ function vr( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){ # relative
 }
 
 function juq(str){
-    if (str !~ /^"/) { # "
-        return str
-    }
-
+    if (str !~ /^"/) return str     #"
     gsub("\\n", "\n", str)
     gsub("\\t", "\t", str)
     gsub("\\v", "\v", str)
     gsub("\\b", "\b", str)
-
     gsub(/\\\\/, "\001\001", str)
     gsub(/\\"/, /"/, str)
     gsub("\001\001", "\\\\", str)
@@ -44,7 +40,6 @@ function jqu(str){
 }
 
 function kp( k1, k2, k3, k4, k5, k6, k7, k8, k9,        _ret ){
-    _ret = ""
     if ( k1 == "" ) return _ret
     _ret = _ret S jqu( k1 )
     if ( k2 == "" ) return _ret
@@ -78,8 +73,7 @@ function ___kp_glob_pattern_item( key ){
     gsub(/\*/, "[^\001]+", key);    return key
 }
 
-function ___kp_glob_pattern( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
-    _ret = ""
+function ___kp_glob_pattern( k1, k2, k3, k4, k5, k6, k7, k8, k9,    _ret ){
     if ( k1 == "" ) return _ret
     _ret = _ret S ___kp_glob_pattern_item( k1 )
     if ( k2 == "" ) return _ret
