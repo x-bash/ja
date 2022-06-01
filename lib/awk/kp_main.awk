@@ -4,7 +4,7 @@
     else {
         KP = $0
         D = split(KP, _, "\001")
-        k = _[ D ]
+        K = _[ D ]
         next
     }
 }
