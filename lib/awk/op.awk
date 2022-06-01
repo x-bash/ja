@@ -11,22 +11,6 @@ function v(){
     return _v = juq( $0 )
 }
 
-function ga( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){ # absolute
-    return _[ kpgen( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) ]
-}
-
-function gr( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){ # relative
-    return _[ KP S kpgen( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) ]
-}
-
-function kpmatch( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
-    return match(KP, kpgen( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) "$" )
-}
-
-function kpglob( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
-    return match( KP, glob(k1, k2, k3, k4, k5, k6, k7, k8, k9) "$" )
-}
-
 function juq(str){
     if (str !~ /^"/) { # "
         return str
@@ -41,6 +25,22 @@ function jqu(str){
     gsub(/\\/, "\\\\", str)
     gsub(/"/, "\\\"", str)
     return "\"" str "\""
+}
+
+function ga( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){ # absolute
+    return _[ kpgen( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) ]
+}
+
+function gr( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){ # relative
+    return _[ KP S kpgen( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) ]
+}
+
+function kpmatch( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
+    return match(KP, kpgen( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) "$" )
+}
+
+function kpglob( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
+    return match( KP, glob(k1, k2, k3, k4, k5, k6, k7, k8, k9) "$" )
 }
 
 
