@@ -9,14 +9,20 @@ function kpopt(){
 
 function k_reset(){ _k_reset = 0; }
 function k(val){
-    if (val == ""){
-        if (_k_reset == 1) return _k
-        _k_reset = 1
-        return _k = juq( key )
-    }
-
-    return k()==val
+    if (_k_reset == 1) return _k
+    _k_reset = 1
+    return _k = juq( key )
 }
+
+# function k(val){
+#     if (val == ""){
+#         if (_k_reset == 1) return _k
+#         _k_reset = 1
+#         return _k = juq( key )
+#     }
+
+#     return k()==val
+# }
 
 function v_reset(){ _v_reset = 0 }
 function v(){

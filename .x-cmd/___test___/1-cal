@@ -38,7 +38,7 @@ data_class | ja 'krm("score"){ s+=v(); c++; } END{ print s/c; }'
 eval "$(data_class | ja 'K~/sco/{ s+=V; c++; } END{ e("avg", s/c); }')"    # printf "%s" "$avg"
 
 eval "$(data_class | ja 'K~/sco/{ s+=V; c++; } END{ e_(s/c); }')"    # printf "%s" "$_"
-eval "$(data_class | ja 'k("score"){ s+=V; c++; } END{ e_(s/c); }')"    # printf "%s" "$_"
+eval "$(data_class | ja 'k()=="score"{ s+=V; c++; } END{ e_(s/c); }')"    # printf "%s" "$_"
 
 eval "$(data_class | ja '_[2]~/sco/{ s+=v(); c++; } END{ e_(s/c); }')"    # printf "%s" "$_"
 
