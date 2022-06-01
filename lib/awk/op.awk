@@ -108,4 +108,20 @@ function q(str){
     gsub(/"/, "\\\"", str)
     return "\"" str "\""
 }
+
+function juq(str){
+    if (str !~ /^"/) { # "
+        return str
+    }
+    gsub(/\\\\/, "\001\001", str)
+    gsub(/\\"/, /"/, str)
+    gsub("\001\001", "\\\\", str)
+    return substr(str, 2, length(str)-2)
+}
+
+function jqu(str){
+    gsub(/\\/, "\\\\", str)
+    gsub(/"/, "\\\"", str)
+    return "\"" str "\""
+}
 # EndSection
