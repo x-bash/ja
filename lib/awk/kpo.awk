@@ -60,7 +60,7 @@ function jiter( item,  _res ) {
     } else {
         _[ JITER_FA_KEYPATH L ] = JITER_CURLEN
         _res = JITER_FA_KEYPATH
-        _[ l ] = item
+        _[ l ] = ""
         key = _[ --l ]
         JITER_FA_KEYPATH = _[ l + JITER_OFFSET_FULLKP ]
         JITER_STATE = _[ JITER_FA_KEYPATH ]
