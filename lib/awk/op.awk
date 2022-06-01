@@ -63,32 +63,32 @@ function kpmatch( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
 }
 
 function kpglob( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
-    return match( KP, glob(k1, k2, k3, k4, k5, k6, k7, k8, k9) "$" )
+    return match( KP, ___kp_glob_pattern(k1, k2, k3, k4, k5, k6, k7, k8, k9) "$" )
 }
 
-function glob_item( key ){
+function ___kp_glob_pattern_item( key ){
     gsub(/\*/, "[^\001]+", key);    return key
 }
 
-function glob( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
+function ___kp_glob_pattern( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
     _ret = ""
     if ( k1 == "" ) return _ret
-    _ret = _ret S glob_item( k1 )
+    _ret = _ret S ___kp_glob_pattern_item( k1 )
     if ( k2 == "" ) return _ret
-    _ret = _ret S glob_item( k2 )
+    _ret = _ret S ___kp_glob_pattern_item( k2 )
     if ( k3 == "" ) return _ret
-    _ret = _ret S glob_item( k3 )
+    _ret = _ret S ___kp_glob_pattern_item( k3 )
     if ( k4 == "" ) return _ret
-    _ret = _ret S glob_item( k4 )
+    _ret = _ret S ___kp_glob_pattern_item( k4 )
     if ( k5 == "" ) return _ret
-    _ret = _ret S glob_item( k5 )
+    _ret = _ret S ___kp_glob_pattern_item( k5 )
     if ( k6 == "" ) return _ret
-    _ret = _ret S glob_item( k6 )
+    _ret = _ret S ___kp_glob_pattern_item( k6 )
     if ( k7 == "" ) return _ret
-    _ret = _ret S glob_item( k7 )
+    _ret = _ret S ___kp_glob_pattern_item( k7 )
     if ( k8 == "" ) return _ret
-    _ret = _ret S glob_item( k8 )
+    _ret = _ret S ___kp_glob_pattern_item( k8 )
     if ( k9 == "" ) return _ret
-    _ret = _ret S glob_item( k9 )
+    _ret = _ret S ___kp_glob_pattern_item( k9 )
     return _ret
 }
