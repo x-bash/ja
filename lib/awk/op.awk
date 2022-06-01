@@ -11,6 +11,39 @@ function v(){
     return _v = juq( $0 )
 }
 
+function ga( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){ # absolute
+    return _[ kpgen( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) ]
+}
+
+function gr( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){ # relative
+    return _[ KP S kpgen( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) ]
+}
+
+function kpmatch( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
+    return match(KP, kpgen( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) "$" )
+}
+
+function kpglob( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
+    return match( KP, glob(k1, k2, k3, k4, k5, k6, k7, k8, k9) "$" )
+}
+
+function juq(str){
+    if (str !~ /^"/) { # "
+        return str
+    }
+    gsub(/\\\\/, "\001\001", str)
+    gsub(/\\"/, /"/, str)
+    gsub("\001\001", "\\\\", str)
+    return substr(str, 2, length(str)-2)
+}
+
+function jqu(str){
+    gsub(/\\/, "\\\\", str)
+    gsub(/"/, "\\\"", str)
+    return "\"" str "\""
+}
+
+
 function kpgen( k1, k2, k3, k4, k5, k6, k7, k8, k9, _ret ){
     _ret = ""
     if ( k1 == "" ) return _ret
@@ -32,22 +65,6 @@ function kpgen( k1, k2, k3, k4, k5, k6, k7, k8, k9, _ret ){
     if ( k9 == "" ) return _ret
     _ret = _ret S jqu( k9 )
     return _ret
-}
-
-function ga( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){ # absolute
-    return _[ kpgen( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) ]
-}
-
-function gr( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){ # relative
-    return _[ KP S kpgen( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) ]
-}
-
-function kpmatch( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
-    return match(KP, kpgen( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) "$" )
-}
-
-function kpglob( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
-    return match( KP, glob(k1, k2, k3, k4, k5, k6, k7, k8, k9) "$" )
 }
 
 function glob_item( key ){
@@ -75,20 +92,4 @@ function glob( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){
     if ( k9 == "" ) return _ret
     _ret = _ret S glob_item( k9 )
     return _ret
-}
-
-function juq(str){
-    if (str !~ /^"/) { # "
-        return str
-    }
-    gsub(/\\\\/, "\001\001", str)
-    gsub(/\\"/, /"/, str)
-    gsub("\001\001", "\\\\", str)
-    return substr(str, 2, length(str)-2)
-}
-
-function jqu(str){
-    gsub(/\\/, "\\\\", str)
-    gsub(/"/, "\\\"", str)
-    return "\"" str "\""
 }
