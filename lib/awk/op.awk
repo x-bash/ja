@@ -11,7 +11,7 @@ function v(){
 function o( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){   return O[ kp( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) ];       }
 function r( k1, k2, k3, k4, k5, k6, k7, k8, k9 ){   return O[ KP S kp( k1, k2, k3, k4, k5, k6, k7, k8, k9 ) ];  }
 
-function d( current_level, value ) {  return ( ( current_level != C ) || ( (value != "") && (value != o[C]) ) ) ? 0 : 1; }
+function d( current_level, value ) {  return ( ( current_level != D ) || ( (value != "") && (value != O[D]) ) ) ? 0 : 1; }
 # function dict( depth ) { return d(depth, "{"); }
 # function list( depth ) { return d(depth, "["); }
 
