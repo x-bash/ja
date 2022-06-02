@@ -4,6 +4,7 @@ function data_class(){
     x jo '{
         classA: [
             aaa
+            ccc
             {
                 name: el,
                 age: 12,
@@ -31,7 +32,7 @@ function data_class(){
                 "author": {
                     "node_id": "MDM6Qm90NDE4OTgyODI=",
                 },
-                "node_id": "aaa"
+                "node_id2": "aaa"
             }
         ]
 
