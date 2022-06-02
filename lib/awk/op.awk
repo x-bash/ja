@@ -64,7 +64,7 @@ function ___kp_glob_pattern( k1, k2, k3, k4, k5, k6, k7, k8, k9,    _ret ){
 
 function p(kp,   i, l){
     l = O[ kp L ]
-    for (i=2; i<=l; ++i) {
+    for (i=1; i<=l; ++i) {
         if (i!=1)   print "\n"
         _p_value( O,  kp S "\"" i "\"")
     }
@@ -72,16 +72,17 @@ function p(kp,   i, l){
 
 function _p_value(O, kp,     _t, _klist, i, _ret){
     _t = O[ kp ]
-    if (_t == T_DICT)           _p_dict(O, kp)
-    else if (_t == T_LIST)      _p_list(O, kp)
+    if (_t == "{")           _p_dict(O, kp)
+    else if (_t == "[")      _p_list(O, kp)
     else                        print _t
 }
 
 function _p_dict(O, kp,     _klist, l, i, _key){
     print "{";  l = O[ kp L ]
+    print "l:" l
     for (i=1; i<=l; i++){
         if (i!=1) print ",";
-        _key = O[ kp S "\""  i "\"" ]; print _key;  print ":"; print O[ kp S _key ]
+        _key = O[ kp S "\""  i "\"" ]; print _key;  print ":"; _p_value( O, kp S _key )
     }
     print "}"
 }
