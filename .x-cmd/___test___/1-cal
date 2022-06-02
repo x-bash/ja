@@ -46,3 +46,4 @@ echo "arg: $avg"
 data_class | jq -r .name
 data_class | ja 'k()=="name"{ print v(); }'
 data_class | ja '{ pr("name") }'
+data_class | ja 'END{ p(kp(1,"classB")) }'  | x jo
