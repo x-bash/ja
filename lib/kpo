@@ -16,7 +16,7 @@ ___x_cmd_ja_kpo(){
 
     local IFS=' '
     ___x_cmd_ja_tokenized | if [ "$filemode" = 1 ]; then
-        eval command awk \
+        eval echo command awk \
             -f "$___X_CMD_ROOT_MOD/ja/lib/awk/op.awk" \
             -f "$___X_CMD_ROOT_MOD/ja/lib/awk/kpo.awk" \
             "$code"
