@@ -1,0 +1,7 @@
+
+xws install
+. ./.x-cmd/___test___/setup
+. ./latest
+. ./lib/kp
+. ./lib/kpo
+. ./lib/util
