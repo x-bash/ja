@@ -3,11 +3,11 @@ ___x_cmd_ja_kpo(){
     local OPT
     local filemode=0
     local code
-    while getopts 'f' OPT; do
+    while getopts 'f:' OPT; do
         case "$OPT" in
             f)
                 filemode=1;
-                code="$code -f \"\$$OPTIND\"" ;;
+                code="$code -f \"\$$((OPTIND-1))\"" ;;
             ?)
                 printf "%s\n" "Fail to parse in $OPTIND: $*"
                 ;;
