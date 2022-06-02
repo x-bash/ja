@@ -4,7 +4,6 @@ function data_class(){
     x jo '{
         classA: [
             aaa
-            ccc
             {
                 name: el,
                 age: 12,
