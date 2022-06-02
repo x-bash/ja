@@ -49,12 +49,12 @@ function jiter( item,  _res ) {
             JITER_CURLEN = JITER_CURLEN + 1
             O[ JITER_FA_KEYPATH L ] = JITER_CURLEN
             JITER_FA_KEYPATH = JITER_FA_KEYPATH S "\"" JITER_CURLEN "\""
-            O[ D ++ ] = JITER_CURLEN    # Notice: Not ++ D. `O[ ++ D ] = JITER_LAST_KP` been done during key processing.
+            O[ D ++ ] = JITER_CURLEN
             key = JITER_CURLEN
         } else {
             O[ JITER_FA_KEYPATH L ] = JITER_CURLEN
             JITER_FA_KEYPATH = JITER_FA_KEYPATH S JITER_LAST_KP
-            O[ ++ D ] = JITER_LAST_KP
+            O[ ++ D ] = JITER_LAST_KP   # Notice: Not ++ D. `O[ D ] = JITER_LAST_KP` been done during key processing.
             key = JITER_LAST_KP
             JITER_LAST_KP = ""
         }
