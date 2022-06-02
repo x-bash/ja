@@ -24,7 +24,7 @@ function jiter( item,  _res ) {
     if (item ~ /^[,:]*$/) return
     if (item ~ /^[tfn"0-9+-]/) #"   # (item !~ /^[\{\}\[\]]$/) {
     {
-        if ( JITER_LAST_KP != "" ) {
+        if ( JITER_LAST_KP != "" ) {    # handle <primitive value> inside {}
             _res = JITER_FA_KEYPATH S JITER_LAST_KP
             O[ D ] = JITER_LAST_KP
             O[ _res ] = item
@@ -40,7 +40,7 @@ function jiter( item,  _res ) {
             key = JITER_CURLEN
             return _res
         }
-        O[ D ] = item
+        O[ D ] = item       # handle <key> inside {}
         O[ JITER_FA_KEYPATH S "\"" JITER_CURLEN "\"" ] = item
         JITER_LAST_KP = item
         # return JITER_FA_KEYPATH S JITER_CURLEN
