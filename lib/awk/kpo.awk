@@ -51,7 +51,7 @@ function jiter( item,  _res ) {
             JITER_FA_KEYPATH = JITER_FA_KEYPATH S "\"" JITER_CURLEN "\""
             O[ depth ] = JITER_CURLEN
             key = JITER_CURLEN
-            V = ""
+
         }
         if (( JITER_STATE != "{" ) && (JITER_STATE != "")){
             JITER_CURLEN = JITER_CURLEN + 1
@@ -89,7 +89,7 @@ function jiter( item,  _res ) {
 {
     if ( (KP = jiter( $0 )) == "" ) next
     K=key;  V=$0;
-    # if(( O[depth] == 1) && ( K ~ /^[\[\{]$/))  depth - 1
+    # D = ( item ~ /^[\[\{]]$/) ? depth - 1 : depth
     D = depth
 
     _k_reset = 0; # k_reset()
