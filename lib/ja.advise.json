@@ -3,7 +3,7 @@
         "#desc": "Tokenized json data"
     },
     "kp": {
-        "#desc": "Gain keypath ang value",
+        "#desc": "Gain keypath and value",
         "#1": []
     },
     "kpo": {
