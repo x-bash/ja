@@ -3,9 +3,13 @@
         "#desc": "Tokenized json data"
     },
     "kp": {
-        "#desc": "Gain keypath ang value"
+        "#desc": "Gain keypath ang value",
+        "#1": []
     },
     "kpo": {
-        "#desc": "Hanlde json object"
+        "#desc": "Hanlde json object",
+        "#n" : {
+            "#cand": ["-f", "-v"]
+        }
     }
 }
