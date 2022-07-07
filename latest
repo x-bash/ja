@@ -11,12 +11,12 @@ ___x_cmd_ja(){
         data)                                       shift; ___x_cmd_ja_data             "$@" ;;
 
         n|normalize)                                shift; ___x_cmd_ja_normalize        "$@" ;;
-        t|tokenize)                                 shift; ___x_cmd_ja_tokenized        "$@" ;;
+        t|tokenize)                                 shift; ___x_cmd_ja_tokenize         "$@" ;;
         f|fmt)                                      shift; ___x_cmd_ja_fmt              "$@" ;;
         color)                                      shift; ___x_cmd_ja_color            "$@" ;;
 
         "")                                         ___x_cmd_ja___normalize_stream           ;;
-        # \{*|\[*)                                    ___x_cmd_ja___normalize_argstring   "$@" ;;
+        # \{*|\[*)                                  ___x_cmd_ja___normalize_argstring   "$@" ;;
 
 
         kp)                                         shift; ___x_cmd_ja_kp "$@" ;;           # just extract keypath, provide jstr

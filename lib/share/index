@@ -5,12 +5,17 @@ ___x_cmd_ja___fmt(){
 }
 
 ___x_cmd_ja_fmt(){
-    ___x_cmd_ja___warp_color_iftty ___x_cmd_ja_fmt "$@"
+    ___x_cmd_ja_normalize | ___x_cmd_ja___fmt "$@"
+}
+
+___x_cmd_ja___color(){
+    command awk -v INDENT="${1:-${INDENT:-2}}" -f "$___X_CMD_ROOT_MOD/ja/lib/share/color.awk"
 }
 
 ___x_cmd_ja_color(){
-    command awk -v INDENT="${1:-${INDENT:-2}}" -f "$___X_CMD_ROOT_MOD/ja/lib/share/color.awk"
+    ___x_cmd_ja_normalize | ___x_cmd_ja___color "$@"
 }
+
 
 ___x_cmd_ja_tokenize(){
     command awk -v ORS="${1:-\n}" \
