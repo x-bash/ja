@@ -5,7 +5,7 @@ ___x_cmd_ja___fmt(){
 }
 
 ___x_cmd_ja_fmt(){
-    ___x_cmd_ja___warp_color_iftty ___x_cmd_ja_fmt "$@"
+    ___x_cmd_ja_normalize |___x_cmd_ja___fmt "$@"
 }
 
 ___x_cmd_ja_color(){
