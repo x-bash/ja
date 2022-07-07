@@ -10,17 +10,21 @@ ___x_cmd_ja(){
     case "$1" in
         data)                                       shift; ___x_cmd_ja_data             "$@" ;;
 
+        n|normalize)                                shift; ___x_cmd_ja_normalize        "$@" ;;
         t|tokenize)                                 shift; ___x_cmd_ja_tokenized        "$@" ;;
         f|fmt)                                      shift; ___x_cmd_ja_fmt              "$@" ;;
         color)                                      shift; ___x_cmd_ja_color            "$@" ;;
+
+        "")                                         ___x_cmd_ja___normalize_stream           ;;
+        \{*|\[*)                                    ___x_cmd_ja___normalize_argstring   "$@" ;;
+
 
         kp)                                         shift; ___x_cmd_ja_kp "$@" ;;           # just extract keypath, provide jstr
         kpo)                                        shift; ___x_cmd_ja_kpo "$@" ;;          # extract keypath, but also provide utils, provide jstr
 
         -h|-H|--help)                               cat "$___X_CMD_ROOT_MOD/ja/lib/ja.help.txt" >&2
                                                     return 0 ;;
-        "")                                         ja:error "ja need at least one argument" >&2;
-                                                    return 1 ;;
+
         _x_cmd_advise_json)                         cat "$___X_CMD_ROOT_MOD/ja/lib/ja.advise.json" ;;
 
         *)                                          ___x_cmd_ja_kpo "$@" ;;

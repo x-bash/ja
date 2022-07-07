@@ -1,7 +1,11 @@
 # shellcheck shell=sh
 
-___x_cmd_ja_fmt(){
+___x_cmd_ja___fmt(){
     command awk -v INDENT="${1:-${INDENT:-2}}" -f "$___X_CMD_ROOT_MOD/ja/lib/share/fmt.awk"
+}
+
+___x_cmd_ja_fmt(){
+    ___x_cmd_ja___warp_color_iftty ___x_cmd_ja_fmt "$@"
 }
 
 ___x_cmd_ja_color(){
@@ -17,4 +21,26 @@ ___x_cmd_ja_tokenize(){
 ___x_cmd_ja_data(){
     ___x_cmd_httpget_gitx x-cmd json-test-data main data/one.mb.json "${TMPDIR}/mb1.json"
     seq "${1:-1}" | x args 1 - cat "${TMPDIR}/mb1.json"
+}
+
+___x_cmd_ja___warp_color_iftty(){
+    if [ ! -t 1 ]; then
+        "$@"
+    else
+        "$@" | ___x_cmd_ja_color "2"
+    fi
+}
+
+___x_cmd_ja_normalize(){
+    command awk \
+        -f "$___X_CMD_ROOT/awk/lib/re.awk"  \
+        -f "$___X_CMD_ROOT/ja/lib/share/normalize.awk"
+}
+
+___x_cmd_ja___normalize_stream(){
+    ___x_cmd_ja___warp_color_iftty ___x_cmd_ja_normalize
+}
+
+___x_cmd_ja___normalize_argstring(){
+    local IFS=" "; printf "%s" "$*" | ___x_cmd_ja___warp_color_iftty ___x_cmd_ja_normalize
 }
