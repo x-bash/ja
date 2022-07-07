@@ -9,7 +9,7 @@ xrc:mod:lib ja      kp kpo util
 ___x_cmd_ja(){
     case "$1" in
         t|tokenized)        shift; ___x_cmd_ja_tokenize "$@" ;;
-        f|fmt)                shift; ___x_cmd_ja_fmt "$@" ;;
+        f|fmt)              shift; ___x_cmd_ja_fmt "$@" ;;
 
         kp)                 shift; ___x_cmd_ja_kp "$@" ;;           # just extract keypath, provide jstr
         kpo)                shift; ___x_cmd_ja_kpo "$@" ;;          # extract keypath, but also provide utils, provide jstr
