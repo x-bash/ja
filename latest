@@ -4,7 +4,7 @@
 # license:      GPLv3
 
 x log init ja
-xrc:mod:lib ja      kp kpo util
+xrc:mod:lib ja      kp kpo share/index
 
 ___x_cmd_ja(){
     case "$1" in

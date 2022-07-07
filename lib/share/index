@@ -1,0 +1,15 @@
+# shellcheck shell=sh
+
+___x_cmd_ja_fmt(){
+    command awk -v INDENT="${1:-${INDENT:-2}}" -f "$___X_CMD_ROOT_MOD/ja/lib/share/fmt.awk"
+}
+
+___x_cmd_ja_color(){
+    command awk -v INDENT="${1:-${INDENT:-2}}" -f "$___X_CMD_ROOT_MOD/ja/lib/share/color.awk"
+}
+
+___x_cmd_ja_tokenize(){
+    command awk -v ORS="${1:-\n}" \
+                -f "$___X_CMD_ROOT_MOD/awk/lib/json.awk" \
+                -f "$___X_CMD_ROOT_MOD/ja/lib/share/tokenized_main.awk"
+}
