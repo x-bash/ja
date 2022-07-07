@@ -43,9 +43,13 @@ ___x_cmd_ja_normalize(){
 }
 
 ___x_cmd_ja___normalize_stream(){
-    ___x_cmd_ja___warp_color_iftty ___x_cmd_ja_normalize
+    if [ ! -t 1 ]; then
+        ___x_cmd_ja_normalize
+    else
+        ___x_cmd_ja_normalize | ___x_cmd_ja___color
+    fi
 }
 
 ___x_cmd_ja___normalize_argstring(){
-    local IFS=" "; printf "%s" "$*" | ___x_cmd_ja___warp_color_iftty ___x_cmd_ja_normalize
+    local IFS=" "; printf "%s" "$*" | ___x_cmd_ja___normalize_stream
 }
