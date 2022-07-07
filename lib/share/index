@@ -13,3 +13,8 @@ ___x_cmd_ja_tokenize(){
                 -f "$___X_CMD_ROOT_MOD/awk/lib/json.awk" \
                 -f "$___X_CMD_ROOT_MOD/ja/lib/share/tokenized_main.awk"
 }
+
+___x_cmd_ja_data(){
+    ___x_cmd_httpget_gitx x-cmd json-test-data main data/one.mb.json "${TMPDIR}/mb1.json"
+    seq "${1:-1}" | x args 1 - cat "${TMPDIR}/mb1.json"
+}
